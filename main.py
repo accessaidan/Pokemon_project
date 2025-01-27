@@ -9,6 +9,8 @@ window.columnconfigure([0,1,2,3,4,5,6,7,8,9,10], minsize=85)
 #Subroutine to show main menu screen
 def main_menu_sub():
     pokedex_menu.pack_forget()
+    show_teams_menu.pack_forget()
+    login_menu.pack_forget()
     main_menu.pack()
 #subroutine to show the pokedex 
 def show_dex_sub():
@@ -54,6 +56,9 @@ back.grid(row=0, column=0, padx= 5, pady=5, sticky='nw')
 ##See teams ############################################################################
 show_teams_menu = tk.Frame()
 
+#back to menu button
+back = tk.Button(master=show_teams_menu, text="Back", fg="Black", command=main_menu_sub)
+back.grid(row=0, column=0, padx= 5, pady=5, sticky='nw')
 #select person whos team
 
 
@@ -62,7 +67,9 @@ show_teams_menu = tk.Frame()
 ##Login ##########################################
 login_menu = tk.Frame()
 
-
+#Back to menu button
+back = tk.Button(master=login_menu, text="Back", fg="Black", command=main_menu_sub)
+back.grid(row=0, column=0, padx= 5, pady=5, sticky='nw')
 
 
 
