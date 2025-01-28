@@ -13,6 +13,7 @@ def main_menu_sub():
     pokedex_menu.grid_remove()
     show_teams_menu.grid_remove()
     login_menu.grid_remove()
+    new_account_frame.grid_remove()
     main_menu.grid()
 #subroutine to show the pokedex 
 def show_dex_sub():
@@ -96,9 +97,6 @@ username_input.grid(row=4,column=3,pady=5)
 #login button ###
 login_button = tk.Button(master=login_menu, text="Login", fg="black", height=6, width=12 ,command=login_sub)
 login_button.grid(row=3,column=8,padx=5,pady=5)
-
-
-
 
 user_data = pd.read_csv("user_data.csv")
 
