@@ -1,4 +1,6 @@
 import tkinter as tk
+import pandas as pd
+import os
 
 window = tk.Tk()
 window.geometry("910x910")
@@ -27,6 +29,7 @@ def login_menu_sub():
 #subroutine to make new account
 def new_account_sub():
     login_button.grid_forget()
+    new_account_frame.grid()
 #subroutine to login to account
 def login_sub():
     new_account.grid_forget()
@@ -82,16 +85,22 @@ back.grid(row=0, column=0, padx= 5, pady=5, sticky='nw')
 new_account = tk.Button(master=login_menu, text="Register", fg="black",height=6,width=12,command= new_account_sub)
 new_account.grid(row=3, column=3,padx=5,pady=5)
 
+#frame with inputs for new account
+new_account_frame = tk.Frame()
+#entry box for new username
+username_input = tk.Entry(master= new_account_frame, textvariable="Username", fg="black", width=24)
+username_input.grid(row=4,column=3,pady=5) 
+
 
 
 #login button ###
-login_button = tk.Button(master=login_menu, text="Login", fg="black",height=6,width=12,command=login_sub)
+login_button = tk.Button(master=login_menu, text="Login", fg="black", height=6, width=12 ,command=login_sub)
 login_button.grid(row=3,column=8,padx=5,pady=5)
 
 
 
 
-
+user_data = pd.read_csv("user_data.csv")
 
 main_menu.grid()
 
