@@ -89,9 +89,14 @@ new_account.grid(row=3, column=3,padx=5,pady=5)
 #frame with inputs for new account
 new_account_frame = tk.Frame()
 #entry box for new username
+username_label = tk.Label(master= new_account_frame, text="Username: ", fg="black", width=12)
+username_label.grid(row=4,column=2,pady=5)
 username_input = tk.Entry(master= new_account_frame, textvariable="Username", fg="black", width=24)
 username_input.grid(row=4,column=3,pady=5) 
-
+password_label = tk.Label(master= new_account_frame, text="Password: ", fg="black", width=12)
+password_label.grid(row=5,column=2,pady=5)
+password_input = tk.Entry(master= new_account_frame, textvariable="password", fg="black", width=24)
+password_input.grid(row=5,column=3,pady=5)
 
 
 #login button ###
@@ -102,4 +107,4 @@ user_data = pd.read_csv("user_data.csv")
 
 main_menu.grid()
 
-window.mainloop()
+window.mainloop()   
