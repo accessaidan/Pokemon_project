@@ -34,7 +34,13 @@ def new_account_sub():
 #subroutine to login to account
 def login_sub():
     new_account.grid_forget()
-
+def check_new_user():
+    username = username_input.get()
+    password = password_input.get()
+    confirm_password = confirm_password_input.get()
+    if username in user_data:
+        alert_window = tk.Tk()
+        alert_label = tk.Label(text= "That username has already been used")
 
 
 ##Main menu frame ######################################################
@@ -88,15 +94,24 @@ new_account.grid(row=3, column=3,padx=5,pady=5)
 
 #frame with inputs for new account
 new_account_frame = tk.Frame()
-#entry box for new username
+#entry box for new username, password and confirm password
 username_label = tk.Label(master= new_account_frame, text="Username: ", fg="black", width=12)
-username_label.grid(row=4,column=2,pady=5)
+username_label.grid(row=4,column=3,pady=5,padx=5)
 username_input = tk.Entry(master= new_account_frame, textvariable="Username", fg="black", width=24)
-username_input.grid(row=4,column=3,pady=5) 
+username_input.grid(row=4,column=4,pady=5,padx=5) 
 password_label = tk.Label(master= new_account_frame, text="Password: ", fg="black", width=12)
-password_label.grid(row=5,column=2,pady=5)
+password_label.grid(row=5,column=3,pady=5,padx=5)
 password_input = tk.Entry(master= new_account_frame, textvariable="password", fg="black", width=24)
-password_input.grid(row=5,column=3,pady=5)
+password_input.grid(row=5,column=4,pady=5,padx=5)
+confirm_password_label = tk.Label(master= new_account_frame, text="confirm Password: ", fg="black", width=12)
+confirm_password_label.grid(row=6,column=3,pady=5,padx=5)
+confirm_password_input = tk.Entry(master= new_account_frame, textvariable="confirm password", fg="black", width=24)
+confirm_password_input.grid(row=6,column=4,pady=5,padx=5)
+
+submit_button = tk.Button(master=new_account_frame, text="submit", command= check_new_user )
+submit_button.grid(row=7,column=4,pady=5,padx=5)
+
+
 
 
 #login button ###
@@ -107,4 +122,4 @@ user_data = pd.read_csv("user_data.csv")
 
 main_menu.grid()
 
-window.mainloop()   
+window.mainloop()
