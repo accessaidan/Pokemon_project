@@ -78,7 +78,7 @@ show_teams_menu = tk.Frame(window, width=910, height=910)
 show_teams_menu.pack()
 
 #back to menu button
-back = tk.Button(master=show_teams_menu, text="Back", fg="Black",height=6,width=12, command=main_menu_sub)
+back = tk.Button(show_teams_menu, text="Back", fg="Black",height=6,width=12, command=main_menu_sub)
 back.place(x= 5, y=5 )
 #select person whos team
 
@@ -90,38 +90,38 @@ login_menu = tk.Frame(window, width=910, height=910)
 login_menu.pack()
 
 #Back to menu button
-back = tk.Button(master=login_menu, text="Back", fg="Black",height=6,width=12, command=main_menu_sub)
+back = tk.Button(login_menu, text="Back", fg="Black",height=6,width=12, command=main_menu_sub)
 back.place(x= 5, y=5 )
 
 #make a new account button ###
-new_account = tk.Button(master=login_menu, text="Register", fg="black",height=6,width=12,command= new_account_sub)
+new_account = tk.Button(login_menu, text="Register", fg="black",height=6,width=12,command= new_account_sub)
 new_account.place(x= 265, y=265)
 
 #frame with inputs for new account
 new_account_frame = tk.Frame(window, width=910, height=910)
 new_account_frame.pack()
 #entry box for new username, password and confirm password
-username_label = tk.Label(master= new_account_frame, text="Username: ", fg="black", width=12)
+username_label = tk.Label( new_account_frame, text="Username: ", fg="black", width=12)
 username_label.place(x= 265,y= 395)
-username_input = tk.Entry(master= new_account_frame, textvariable="Username", fg="black", width=24)
+username_input = tk.Entry( new_account_frame, textvariable="Username", fg="black", width=24)
 username_input.place(x= 395, y= 395) 
-password_label = tk.Label(master= new_account_frame, text="Password: ", fg="black", width=12)
+password_label = tk.Label(new_account_frame, text="Password: ", fg="black", width=12)
 password_label.place(x= 265, y= 525)
-password_input = tk.Entry(master= new_account_frame, textvariable="password", fg="black", width=24)
+password_input = tk.Entry(new_account_frame, textvariable="password", fg="black", width=24)
 password_input.place(x= 395, y= 525)
-confirm_password_label = tk.Label(master= new_account_frame, text="confirm Password: ", fg="black", width=12)
+confirm_password_label = tk.Label(new_account_frame, text="confirm Password: ", fg="black", width=12)
 confirm_password_label.place(x= 265, y= 655)
-confirm_password_input = tk.Entry(master= new_account_frame, textvariable="confirm password", fg="black", width=24)
+confirm_password_input = tk.Entry(new_account_frame, textvariable="confirm password", fg="black", width=24)
 confirm_password_input.place(x=395, y=655)
 
-submit_button = tk.Button(master=new_account_frame, text="submit", command= check_new_user )
+submit_button = tk.Button(new_account_frame, text="submit", command= check_new_user )
 submit_button.place(x=395, y=785)
 
 
 
 
 #login button ###
-login_button = tk.Button(master=login_menu, text="Login", fg="black", height=6, width=12 ,command=login_sub)
+login_button = tk.Button(login_menu, text="Login", fg="black", height=6, width=12 ,command=login_sub)
 login_button.place(x= 525, y=265)
 
 user_data = pd.read_csv("user_data.csv")
