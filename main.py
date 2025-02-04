@@ -12,17 +12,63 @@ window.columnconfigure([0,1,2,3,4,5,6], minsize=120)
 #reigster button on login screen pressed
 def reg_button_press():
     frm_reg_or_log.pack_forget()
+    frm_login.pack_forget()
     frm_register.pack()
 ##new user submit button pressed
 def check_new_user():
     new_username = txt_new_username.get()
     new_password = txt_new_password.get()
     conf_password = txt_conf_password.get()
+    ### reads cvs 
+    user_data = pd.read_csv('Pokemon_project/user_data.csv')
+
     #check if passwords match and username doesnt already exist
-    if new_username not in user_data['username'] and new_password == conf_password:
-        print("Accept new user")
-    else:
+    if new_username in user_data["username"].values or new_password != conf_password:
         print("Sorry either that username already exists or the passwords do not match")
+    else:
+        print("New user accepted")
+        adding_data = (
+            {
+                "username":new_username,
+                "password":new_password,
+                "poke1":0,
+                "poke2":0,
+                "poke3":0,
+                "poke4":0,
+                "poke5":0,
+                "poke6":0,
+            }
+        )
+        user_data.loc[len(user_data)] = adding_data
+        username = new_username
+        main_menu_sub(username)
+
+##Login button pressed
+def login_button_press():
+    frm_reg_or_log.pack_forget()
+    frm_register.pack_forget()
+    frm_login.pack()
+#login submitt button pressed
+def check_user_pass():
+    username_input = txt_username.get()
+    password_input = txt_password.get()
+
+    ###reads csv
+    user_data = pd.read_csv('user_data.csv')
+    if username_input in user_data["username"] and password_input == user_data["pasword"]["username" ==username_input]:
+        print("login success")
+    
+    else:
+        print("Login fail")
+
+#main menu subroutine 
+def main_menu_sub(username):
+    frm_pokedex_menu.pack_forget()
+    frm_register.pack_forget()
+    frm_main_menu.pack()
+
+
+
 
 
 #Login screen #######################################################
@@ -63,8 +109,31 @@ btn_new_submit = tk.Button(frm_register, text='submit', fg='black', height=5,wid
 btn_new_submit.place(x=395,y=525)
 
 #Login button
-btn_login= tk.Button(frm_reg_or_log, text="Login", fg="Black",height=6,width=12,)
+btn_login= tk.Button(frm_reg_or_log, text="Login", fg="Black",height=6,width=12,command=login_button_press)
 btn_login.place(x=525, y=135)
+
+##login frame
+frm_login = tk.Frame(window, width=910, height=910)
+frm_login.pack()
+##keeping register button
+btn_register= tk.Button(frm_login, text="Register", fg="Black",height=6,width=12, command=reg_button_press)
+btn_register.place(x=265, y=135)
+##keeping login button
+btn_login= tk.Button(frm_login, text="Login", fg="Black",height=6,width=12,)
+btn_login.place(x=525, y=135)
+##username label and inoput
+lbl_username = tk.Label(frm_login, text= 'Enter username',foreground='black', height=6, width=12)
+lbl_username.place(x=525, y=225)
+txt_username = tk.Entry(frm_login, textvariable='Enter username', foreground='black')
+txt_username.place(x= 385, y=265)
+##Password label and input
+lbl_password = tk.Label(frm_login, text= 'Enter password',foreground='black', height=6, width=12)
+lbl_password.place(x=525, y=285)
+txt_password = tk.Entry(frm_login, textvariable='Enter password', foreground='black')
+txt_password.place(x= 385, y=325)
+##login submit button
+btn_new_submit = tk.Button(frm_login, text='submit', fg='black', height=5,width=12, command=check_user_pass)
+btn_new_submit.place(x=395,y=525)
 
 
 
@@ -88,7 +157,7 @@ see_dex.place(x= 265, y=265)
 see_teams = tk.Button(frm_main_menu, text = "See teams \n from anime", fg="black",height=6,width=12 )
 see_teams.place(x=395, y= 265)
 
-#Login button
+#team builder button
 team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=6,width=12 )
 team_builder.place(x= 525, y=265)
 #########################################################################
@@ -146,8 +215,7 @@ back.place(x= 5, y=5 )
 
 
 
-user_data = pd.read_csv("user_data.csv")
-print(user_data)
+
 
 
 window.mainloop()
