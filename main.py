@@ -14,34 +14,45 @@ def reg_button_press():
     frm_reg_or_log.pack_forget()
     frm_login.pack_forget()
     frm_register.pack()
-##new user submit button pressed
+##login button pressed in register
+def log_in_reg_sub():
+    frm_register.pack_forget()
+    frm_login.pack()
+##register submit button pressed
 def check_new_user():
     new_username = txt_new_username.get()
     new_password = txt_new_password.get()
     conf_password = txt_conf_password.get()
-    ### reads cvs 
-    user_data = pd.read_csv('Pokemon_project/user_data.csv')
 
-    #check if passwords match and username doesnt already exist
-    if new_username in user_data["username"].values or new_password != conf_password:
-        print("Sorry either that username already exists or the passwords do not match")
+    if new_username == "" or new_password == "":
+        print("You must fill the boxs")
     else:
-        print("New user accepted")
-        adding_data = (
-            {
-                "username":new_username,
-                "password":new_password,
-                "poke1":0,
-                "poke2":0,
-                "poke3":0,
-                "poke4":0,
-                "poke5":0,
-                "poke6":0,
-            }
-        )
-        user_data.loc[len(user_data)] = adding_data
-        username = new_username
-        main_menu_sub(username)
+        ### reads cvs 
+        user_data = pd.read_csv('Pokemon_project/user_data.csv')
+
+        #check if passwords match and username doesnt already exist
+        if new_username in user_data["username"].values or new_password != conf_password:
+            print("Sorry either that username already exists or the passwords do not match")
+        else:
+            print("New user accepted")
+            adding_data = (
+                {
+                    "username":new_username,
+                    "password":new_password,
+                    "poke1":0,
+                    "poke2":0,
+                    "poke3":0,
+                    "poke4":0,
+                    "poke5":0,
+                    "poke6":0,
+                }
+            )
+            user_data.loc[len(user_data)] = adding_data
+            username = new_username
+            main_menu_sub(username)
+
+
+
 
 ##Login button pressed
 def login_button_press():
@@ -60,9 +71,10 @@ def check_user_pass():
         print("You must enter a username and password")
     else:
     ###reads csv
-        user_data = pd.read_csv('user_data.csv')
+        user_data = pd.read_csv('Pokemon_project/user_data.csv')
         if username_input in user_data["username"]:
-                if password_input == user_data.loc[user_data['username'] == username_input, 'password']:
+                needed_password = user_data.loc[user_data['username']== username_input, 'password']
+                if password_input == needed_password:
                     print("Login success")
         
         else:
@@ -80,7 +92,7 @@ def main_menu_sub(username):
 
 #Login screen #######################################################
 frm_reg_or_log = tk.Frame(window, width=910, height=910)
-frm_reg_or_log.pack()
+
 #Register button
 btn_register= tk.Button(frm_reg_or_log, text="Register", fg="Black",height=6,width=12, command=reg_button_press)
 btn_register.place(x=265, y=135)
@@ -89,12 +101,12 @@ btn_register.place(x=265, y=135)
 ##Shows username, password, confirm password
 ##makes frame
 frm_register = tk.Frame(window, width=910, height=910)
-frm_register.pack()
+
 ## keeping register button
 btn_register= tk.Button(frm_register, text="Register", fg="Black",height=6,width=12, command=reg_button_press)
 btn_register.place(x=265, y=135)
 ##keeping login button
-btn_login= tk.Button(frm_register, text="Login", fg="Black",height=6,width=12,)
+btn_login= tk.Button(frm_register, text="Login", fg="Black",height=6,width=12,command=log_in_reg_sub)
 btn_login.place(x=525, y=135)
 ##username label and inoput
 lbl_new_username = tk.Label(frm_register, text= 'Enter username',foreground='black', height=6, width=12)
@@ -121,7 +133,7 @@ btn_login.place(x=525, y=135)
 
 ##login frame
 frm_login = tk.Frame(window, width=910, height=910)
-frm_login.pack()
+
 ##keeping register button
 btn_register= tk.Button(frm_login, text="Register", fg="Black",height=6,width=12, command=reg_button_in_login_pressed)
 btn_register.place(x=265, y=135)
@@ -153,7 +165,7 @@ btn_new_submit.place(x=395,y=525)
 
 ##Main menu frame ######################################################
 frm_main_menu = tk.Frame(window, width=910, height=910)
-frm_main_menu.pack()
+
 
 #see pokedex button
 see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12)
@@ -178,7 +190,7 @@ team_builder.place(x= 525, y=265)
 
 ##Pokedex menu frame #######################################################
 frm_pokedex_menu = tk.Frame(window, width=910, height=910)
-frm_pokedex_menu.pack()
+
 
 #Back to menu button
 back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12)
@@ -196,7 +208,7 @@ back.place(x= 5, y=5 )
 
 ##See teams ############################################################################
 frm_show_teams_menu = tk.Frame(window, width=910, height=910)
-frm_show_teams_menu.pack()
+
 
 #back to menu button
 back = tk.Button(frm_show_teams_menu, text="Back to menu", fg="Black",height=6,width=12)
@@ -223,6 +235,6 @@ back.place(x= 5, y=5 )
 
 
 
-
+frm_reg_or_log.pack()
 
 window.mainloop()
