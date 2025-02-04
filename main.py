@@ -48,18 +48,25 @@ def login_button_press():
     frm_reg_or_log.pack_forget()
     frm_register.pack_forget()
     frm_login.pack()
+#register button pressed in login
+def reg_button_in_login_pressed():
+    frm_login.pack_forget()
+    frm_register.pack()
 #login submitt button pressed
 def check_user_pass():
     username_input = txt_username.get()
     password_input = txt_password.get()
-
-    ###reads csv
-    user_data = pd.read_csv('user_data.csv')
-    if username_input in user_data["username"] and password_input == user_data["pasword"]["username" ==username_input]:
-        print("login success")
-    
+    if username_input == "" or password_input == "":
+        print("You must enter a username and password")
     else:
-        print("Login fail")
+    ###reads csv
+        user_data = pd.read_csv('user_data.csv')
+        if username_input in user_data["username"]:
+                if password_input == user_data.loc[user_data['username'] == username_input, 'password']:
+                    print("Login success")
+        
+        else:
+            print("Login fail")
 
 #main menu subroutine 
 def main_menu_sub(username):
@@ -116,7 +123,7 @@ btn_login.place(x=525, y=135)
 frm_login = tk.Frame(window, width=910, height=910)
 frm_login.pack()
 ##keeping register button
-btn_register= tk.Button(frm_login, text="Register", fg="Black",height=6,width=12, command=reg_button_press)
+btn_register= tk.Button(frm_login, text="Register", fg="Black",height=6,width=12, command=reg_button_in_login_pressed)
 btn_register.place(x=265, y=135)
 ##keeping login button
 btn_login= tk.Button(frm_login, text="Login", fg="Black",height=6,width=12,)
