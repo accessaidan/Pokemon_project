@@ -23,6 +23,7 @@ def log_in_reg_sub():
     frm_login.pack()
 ##register submit button pressed
 def check_new_user():
+    global username
     new_username = txt_new_username.get()
     new_password = txt_new_password.get()
     conf_password = txt_conf_password.get()
@@ -54,9 +55,7 @@ def check_new_user():
             global username
             username = new_username
             
-            main_menu_sub(username)
-
-
+            main_menu_sub()
 
 
 ##Login button pressed
@@ -70,6 +69,7 @@ def reg_button_in_login_pressed():
     frm_register.pack()
 #login submitt button pressed
 def check_user_pass():
+    global username
     username_input = txt_username.get()
     password_input = txt_password.get()
     if username_input == "" or password_input == "":
@@ -82,23 +82,28 @@ def check_user_pass():
             if password_input in user_data["password"].values: ########################### Does not fucking work
                 print("Login success")
                 username = username_input
-                main_menu_sub(username)
+                main_menu_sub()
             else:
-                    print("Login fail 2")
+                    print("Sorry that password doesnt match your username")
         else:
-            print("Login fail")
+            print("Sorry that username does not exist")
 
 #main menu subroutine 
-def main_menu_sub(username):
-    frm_pokedex_menu.pack_forget()
+def main_menu_sub():
+    global username
+    frm_login.pack_forget()
     frm_register.pack_forget()
+    frm_main_menu.pack()
+#back to menu button
+def back_to_menu_sub():
+    frm_profile_menu.pack_forget()
     frm_main_menu.pack()
 # subroutine for logging out
 def log_out_sub():
     frm_profile_menu.pack_forget()
     frm_reg_or_log.pack()
 #subroutine for profile menu
-def profile_sub():                      ###########################################################################
+def profile_sub():                      
     frm_main_menu.pack_forget()
     frm_profile_menu.pack()
 
@@ -219,6 +224,9 @@ see_team.place(x=395, y= 265)
 delete_account = tk.Button(frm_profile_menu, text = "Make a team", fg="black",height=6,width=12 )
 delete_account.place(x= 525, y=265)
 
+#Back to menu button
+back = tk.Button(frm_profile_menu, text="Back to menu", fg="Black",height=6,width=12,command=back_to_menu_sub)
+back.place(x= 5, y=5 )
 
 ##Pokedex menu frame #######################################################
 frm_pokedex_menu = tk.Frame(window, width=910, height=910)
