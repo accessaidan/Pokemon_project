@@ -78,12 +78,12 @@ def check_user_pass():
     ###reads csv
         user_data = pd.read_csv('user_data.csv')
         
-        if username_input in user_data["username"].values:##################################################Doesnt work and i dont know why
-                if password_input in user_data["password"].values:
-                    print("Login success")
-                    username = username_input
-                    main_menu_sub(username)
-                else:
+        if username_input in user_data["username"].values:
+            if password_input in user_data["password"].values: ########################### Does not fucking work
+                print("Login success")
+                username = username_input
+                main_menu_sub(username)
+            else:
                     print("Login fail 2")
         else:
             print("Login fail")
@@ -95,8 +95,13 @@ def main_menu_sub(username):
     frm_main_menu.pack()
 # subroutine for logging out
 def log_out_sub():
-    frm_main_menu.pack_forget()
+    frm_profile_menu.pack_forget()
     frm_reg_or_log.pack()
+#subroutine for profile menu
+def profile_sub():                      ###########################################################################
+    frm_main_menu.pack_forget()
+    frm_profile_menu.pack()
+
 
 
 
@@ -193,16 +198,26 @@ see_teams.place(x=395, y= 265)
 team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=6,width=12 )
 team_builder.place(x= 525, y=265)
 
-#Logout button
-log_out = tk.Button(frm_main_menu, text=('log out'), fg='black',height=6, width=12, command= log_out_sub)
-log_out.place(x=785,y=5)
+#profile button
+profile = tk.Button(frm_main_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile.place(x=785,y=5)
 #########################################################################
 
 
+#Profile menu frame
+frm_profile_menu = tk.Frame(window, width=910, height=910)
+#logout button
+log_out = tk.Button(frm_profile_menu, text = "log out", fg="black",height=6,width=12, command=log_out_sub)
+log_out.place(x= 265, y=265)
 
 
+#see team button
+see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",height=6,width=12 )
+see_team.place(x=395, y= 265)
 
-
+#delete account button
+delete_account = tk.Button(frm_profile_menu, text = "Make a team", fg="black",height=6,width=12 )
+delete_account.place(x= 525, y=265)
 
 
 ##Pokedex menu frame #######################################################
