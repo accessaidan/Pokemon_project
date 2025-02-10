@@ -29,16 +29,28 @@ def check_new_user():
     conf_password = txt_conf_password.get()
 
     if new_username == "" or new_password == "":
-        print("You must fill the boxs")
+        empty_inputs = tk.Toplevel(window)
+        empty_inputs.title("ERROR")
+        empty_inputs.geometry('250x50')
+        lbl_must_input = tk.Label(empty_inputs, text="You must fill the boxs", foreground='black').pack()
+        lbl_can_close = tk.Label(empty_inputs, text="You may now close this window and try again", foreground='black').pack()
     else:
         ### reads cvs 
         user_data = pd.read_csv('user_data.csv')
 
         #check if passwords match and username doesnt already exist
         if new_username in user_data["username"].values or new_password != conf_password:
-            print("Sorry either that username already exists or the passwords do not match")
+            reg_fail= tk.Toplevel(window)
+            reg_fail.title("ERROR")
+            reg_fail.geometry('350x50')
+            lbl_reg_fail = tk.Label(reg_fail, text="Either that username already exists or the passwords do not match", foreground='black').pack()
+            lbl_can_close = tk.Label(reg_fail, text="You may now close this window and try again", foreground='black').pack()
         else:
-            print("New user accepted")
+            registration_success = tk.Toplevel(window)
+            registration_success.title("SUCCESS")
+            registration_success.geometry('250x50')
+            lbl_registration_success = tk.Label(registration_success, text="registration successful", foreground='black').pack()
+            lbl_can_close = tk.Label(registration_success, text="You may now close this window and continue", foreground='black').pack()
             adding_data = (
                 {
                     "username":new_username,
@@ -73,20 +85,36 @@ def check_user_pass():
     username_input = txt_username.get()
     password_input = txt_password.get()
     if username_input == "" or password_input == "":
-        print("You must enter a username and password")
+        empty_inputs = tk.Toplevel(window)
+        empty_inputs.title("ERROR")
+        empty_inputs.geometry('250x50')
+        lbl_must_input = tk.Label(empty_inputs, text="You must fill the boxs", foreground='black').pack()
+        lbl_can_close = tk.Label(empty_inputs, text="You may now close this window and try again", foreground='black').pack()
     else:
-    ###reads csv
+        ###reads csv
         user_data = pd.read_csv('user_data.csv')
         
         if username_input in user_data["username"].values:
             if password_input in user_data["password"].values: ########################### Does not fucking work
-                print("Login success")
+                login_success = tk.Toplevel(window)
+                login_success.title("SUCCESS")
+                login_success.geometry('250x50')
+                lbl_login_success = tk.Label(login_success, text="login success", foreground='black').pack()
+                lbl_can_close = tk.Label(login_success, text="You may now close this window and continue", foreground='black').pack()
                 username = username_input
                 main_menu_sub()
             else:
-                    print("Sorry that password doesnt match your username")
+                wrong_password = tk.Toplevel(window)
+                wrong_password.title("ERROR")
+                wrong_password.geometry('250x50')
+                lbl_wrong_password = tk.Label(wrong_password, text="That password does not match your username", foreground='black').pack()
+                lbl_can_close = tk.Label(wrong_password, text="You may now close this window and try again", foreground='black').pack()
         else:
-            print("Sorry that username does not exist")
+            wrong_username = tk.Toplevel(window)
+            wrong_username.title("ERROR")
+            wrong_username.geometry('250x50')
+            lbl_wrong_username = tk.Label(wrong_username, text="That username does not exist", foreground='black').pack()
+            lbl_can_close = tk.Label(wrong_username, text="You may now close this window and try again", foreground='black').pack()
 
 #main menu subroutine 
 def main_menu_sub():
