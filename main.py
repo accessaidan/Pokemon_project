@@ -77,12 +77,14 @@ def check_user_pass():
     else:
     ###reads csv
         user_data = pd.read_csv('user_data.csv')
-        if username_input in user_data["username"]:##################################################Doesnt work and i dont know why
-                needed_password = user_data[user_data['username']== username_input, 'password'] #####Might not work havent been able to test
-                if password_input == needed_password:
+        
+        if username_input in user_data["username"].values:##################################################Doesnt work and i dont know why
+                if password_input in user_data["password"].values:
                     print("Login success")
                     username = username_input
                     main_menu_sub(username)
+                else:
+                    print("Login fail 2")
         else:
             print("Login fail")
 
@@ -192,7 +194,7 @@ team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=
 team_builder.place(x= 525, y=265)
 
 #Logout button
-log_out = tk.Button(frm_main_menu, text=(username, '\n log out'), fg='black',height=6, width=12, command= log_out_sub)
+log_out = tk.Button(frm_main_menu, text=('log out'), fg='black',height=6, width=12, command= log_out_sub)
 log_out.place(x=785,y=5)
 #########################################################################
 
