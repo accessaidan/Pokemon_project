@@ -174,7 +174,7 @@ def show_team_sub(character):
         poke6 = 242
     
     show_team_window = tk.Toplevel(window)
-    show_team_window.title(character_name)
+    show_team_window.title("Team")
     show_team_window.geometry('930x930')
 
     
