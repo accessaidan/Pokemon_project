@@ -165,7 +165,7 @@ def see_teams_sub():
 def show_team_sub(character):
     if character == "0":
         character_name = "brock"
-        character_image = tk.PhotoImage(file="brock.png")
+        photo = tk.PhotoImage(file='brock_big.png')
         poke1 = 208
         poke2 = 205
         poke3 = 272
@@ -173,11 +173,16 @@ def show_team_sub(character):
         poke5 = 453
         poke6 = 242
     
-    show_team_window = tk.Toplevel(window)
-    show_team_window.title("Team")
-    show_team_window.geometry('930x930')
 
+
+    show_team_window = tk.Toplevel(window)
+    show_team_window.geometry('930x930')
+    show_team_window.title("Team")
     
+
+    photo = tk.PhotoImage(file='brock.png')
+    btn_brock = tk.Button(show_team_window, image=(photo), fg="black",height=290,width=290, padx=10, pady=10) # 0 is brock
+    btn_brock.place(x= 320, y=10)
 
 
 
@@ -329,7 +334,8 @@ back.place(x= 5, y=5 )
 profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
 profile.place(x=785,y=5)
 
-btn_brock = tk.Button(frm_show_teams_menu, text = "Brock", fg="black",height=6,width=12, command= show_team_sub(0)) # 0 is brock
+brock_photo = tk.PhotoImage(file='brock.png')
+btn_brock = tk.Button(frm_show_teams_menu, image=(brock_photo), fg="black",height=120,width=120, command=lambda: show_team_sub(0)) # 0 is brock
 btn_brock.place(x= 135, y=135)
 
 
