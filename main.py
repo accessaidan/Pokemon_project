@@ -126,18 +126,30 @@ def main_menu_sub():
 def back_to_menu_sub():
     frm_profile_menu.pack_forget()
     frm_main_menu.pack()
-# subroutine for logging out
-def log_out_sub():
-    frm_profile_menu.pack_forget()
-    frm_reg_or_log.pack()
+
 #subroutine for profile menu
 def profile_sub():                      
     frm_main_menu.pack_forget()
     frm_profile_menu.pack()
-
-
-
-
+# subroutine for logging out
+def log_out_sub():
+    frm_profile_menu.pack_forget()
+    frm_reg_or_log.pack()
+#subroutine for checking deleting account
+def delete_account_sub():
+    delete_account_confirm = tk.Toplevel(window)
+    delete_account_confirm.title("DELETE ACCOUNT")
+    delete_account_confirm.geometry('250x50')
+    lbl_must_input = tk.Label(delete_account_confirm, text="Are you SURE you want to DELETE your account", foreground='black').pack()
+    btn_can_close = tk.Button(delete_account_confirm, text="DELETE ACCOUNT", foreground='black', command= delete_account_function_sub).pack()
+#subroutine to actually delete account
+def delete_account_function_sub():
+    global username
+    user_data = pd.read_csv('user_data.csv')
+    user_data = user_data[user_data.username!= username]
+    user_data.to_csv('user_data.csv', index=False)
+    frm_profile_menu.pack_forget()
+    frm_reg_or_log.pack()
 
 
 ############################Start of Tkinter stuff ###########################
@@ -249,7 +261,7 @@ see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",heigh
 see_team.place(x=395, y= 265)
 
 #delete account button
-delete_account = tk.Button(frm_profile_menu, text = "Delete account", fg="black",height=6,width=12 )
+delete_account = tk.Button(frm_profile_menu, text = "Delete account", fg="black",height=6,width=12, command= delete_account_sub )
 delete_account.place(x= 525, y=265)
 
 #Back to menu button
