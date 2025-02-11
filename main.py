@@ -249,7 +249,7 @@ see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",heigh
 see_team.place(x=395, y= 265)
 
 #delete account button
-delete_account = tk.Button(frm_profile_menu, text = "Make a team", fg="black",height=6,width=12 )
+delete_account = tk.Button(frm_profile_menu, text = "Delete account", fg="black",height=6,width=12 )
 delete_account.place(x= 525, y=265)
 
 #Back to menu button
