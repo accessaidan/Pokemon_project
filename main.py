@@ -125,11 +125,13 @@ def main_menu_sub():
 #back to menu button
 def back_to_menu_sub():
     frm_profile_menu.pack_forget()
+    frm_show_teams_menu.pack_forget()
     frm_main_menu.pack()
 
 #subroutine for profile menu
 def profile_sub():                      
     frm_main_menu.pack_forget()
+    frm_show_teams_menu.pack_forget()
     frm_profile_menu.pack()
 # subroutine for logging out
 def log_out_sub():
@@ -151,6 +153,36 @@ def delete_account_function_sub():
     frm_profile_menu.pack_forget()
     frm_reg_or_log.pack()
 
+
+##Buttons for functions in main menu
+#subroutine to see poekdex
+
+#subroutie for seeing teams from the anime
+def see_teams_sub():
+    frm_main_menu.pack_forget()
+    frm_show_teams_menu.pack()
+##showing team
+def show_team_sub(character):
+    if character == "0":
+        character_name = "brock"
+        character_image = tk.PhotoImage(file="brock.png")
+        poke1 = 208
+        poke2 = 205
+        poke3 = 272
+        poke4 = 259
+        poke5 = 453
+        poke6 = 242
+    
+    show_team_window = tk.Toplevel(window)
+    show_team_window.title(character_name)
+    show_team_window.geometry('930x930')
+
+    
+
+
+
+
+#subrtoutine to make a team
 
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
@@ -218,8 +250,7 @@ btn_new_submit = tk.Button(frm_login, text='submit', fg='black', height=5,width=
 btn_new_submit.place(x=395,y=525)
 
 
-################    need to fix the login function ######################
-################    Apart from that above this is done ##################
+
 
 
 
@@ -236,7 +267,7 @@ see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,wid
 see_dex.place(x= 265, y=265)
 
 #see teams button
-see_teams = tk.Button(frm_main_menu, text = "See teams \n from anime", fg="black",height=6,width=12 )
+see_teams = tk.Button(frm_main_menu, text = "See teams \n from anime", fg="black",height=6,width=12,command= see_teams_sub) 
 see_teams.place(x=395, y= 265)
 
 #team builder button
@@ -290,13 +321,16 @@ back.place(x= 5, y=5 )
 frm_show_teams_menu = tk.Frame(window, width=910, height=910)
 
 
+
 #back to menu button
-back = tk.Button(frm_show_teams_menu, text="Back to menu", fg="Black",height=6,width=12)
+back = tk.Button(frm_show_teams_menu, text="Back to menu", fg="Black",height=6,width=12, command= back_to_menu_sub)
 back.place(x= 5, y=5 )
-#select person whos team
+#profile button
+profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile.place(x=785,y=5)
 
-
-
+btn_brock = tk.Button(frm_show_teams_menu, text = "Brock", fg="black",height=6,width=12, command= show_team_sub(0)) # 0 is brock
+btn_brock.place(x= 135, y=135)
 
 
 
