@@ -66,7 +66,7 @@ def check_new_user():
             user_data.loc[len(user_data)] = adding_data
             global username
             username = new_username
-            
+            user_data.to_csv('user_data.csv', index=False)
             main_menu_sub()
 
 
