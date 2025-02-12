@@ -1,6 +1,7 @@
 import tkinter as tk
 import pandas as pd
 import os
+import requests
 
 global username
 username = ""
@@ -180,10 +181,11 @@ def show_team_sub(character):
         poke4 = 120
         poke5 = 121
         poke6 = 186
-
+    ## new window opens to see team chosen
     show_team_window = tk.Toplevel(window)
-    show_team_window.geometry('930x930')
+    show_team_window.geometry('910x910')
     show_team_window.title(character_name + "'s Team")
+    
     
 
 
