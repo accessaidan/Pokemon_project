@@ -1,6 +1,9 @@
 import tkinter as tk
 import pandas as pd
 import os
+import requests
+from PIL import Image, ImageTk
+import io
 
 global username
 username = ""
@@ -187,10 +190,61 @@ def show_team_sub(character):
     
 
 
+    #pokemon 1
+    poke_sprite = fetch_pokemon_sprite(poke1)
 
+    btn_poke1 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke1.image = poke_sprite
+    btn_poke1.place(x= 135, y=265)
+
+    #pokemon 2
+    poke_sprite = fetch_pokemon_sprite(poke2)
+
+    btn_poke2 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke2.image = poke_sprite
+    btn_poke2.place(x= 395, y=265)
+
+    #pokemon 3
+    poke_sprite = fetch_pokemon_sprite(poke3)
+
+    btn_poke3 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke3.image = poke_sprite
+    btn_poke3.place(x= 655, y=265)
+    
+    #pokemon 4
+    poke_sprite = fetch_pokemon_sprite(poke4)
+
+    btn_poke4 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke4.image = poke_sprite
+    btn_poke4.place(x= 155, y=525)
+
+    #pokemon 5
+    poke_sprite = fetch_pokemon_sprite(poke5)
+
+    btn_poke5 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke5.image = poke_sprite
+    btn_poke5.place(x= 395, y=525)
+
+    #pokemon 6
+    poke_sprite = fetch_pokemon_sprite(poke6)
+
+    btn_poke6 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke6.image = poke_sprite
+    btn_poke6.place(x= 655, y=525)
 
 
 #subrtoutine to make a team
+
+
+#subroutine where pokemon sprite is fetched
+def fetch_pokemon_sprite(pokemon_id):
+    url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon_id}.png"
+    response = requests.get(url)
+    poke1_image_data = response.content
+    poke1_sprite = Image.open(io.BytesIO(poke1_image_data))
+    poke1_sprite = ImageTk.PhotoImage(poke1_sprite)
+
+    return poke1_sprite
 
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
