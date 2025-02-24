@@ -166,7 +166,19 @@ def see_teams_sub():
     frm_show_teams_menu.pack()
 ##showing team
 def show_team_sub(character):
-    if character == "brock":
+    global username
+    user_data = pd.read_csv('user_data.csv')
+    
+    if character == "user":
+        character_name = username
+        poke1 = user_data.loc[user_data['username'] == username, 'poke1'].values[0]
+        poke2 = user_data.loc[user_data['username'] == username, 'poke2'].values[0]
+        poke3 = user_data.loc[user_data['username'] == username, 'poke3'].values[0]
+        poke4 = user_data.loc[user_data['username'] == username, 'poke4'].values[0]
+        poke5 = user_data.loc[user_data['username'] == username, 'poke5'].values[0]
+        poke6 = user_data.loc[user_data['username'] == username, 'poke6'].values[0]
+
+    elif character == "brock":
         character_name = "brock"
         poke1 = 208
         poke2 = 205
@@ -183,10 +195,11 @@ def show_team_sub(character):
         poke4 = 120
         poke5 = 121
         poke6 = 186
-
+    ## new window opens to see team chosen
     show_team_window = tk.Toplevel(window)
-    show_team_window.geometry('930x930')
+    show_team_window.geometry('910x910')
     show_team_window.title(character_name + "'s Team")
+    
     
 
 
@@ -350,7 +363,7 @@ log_out.place(x= 265, y=265)
 
 
 #see team button
-see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",height=6,width=12 )
+see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",height=6,width=12, command=lambda: show_team_sub("user") )
 see_team.place(x=395, y= 265)
 
 #delete account button
