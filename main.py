@@ -259,34 +259,33 @@ def team_builder_sub():
     frm_main_menu.pack_forget()
     frm_make_team.pack()
 
-#subroutine to see if inputted pokemon exists
+#subroutine to see if inputted pokemon exists 
 def check_pokemon_sub():
     pokemon = txt_make_team.get()
 
     inputted_pokemon_window = tk.Toplevel(window)
     inputted_pokemon_window.geometry('240x240')
 
-    try:
-
+    if pokemon.isdigit():
         poke_sprite = fetch_pokemon_sprite(pokemon)
-
         btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
         btn_poke.image = poke_sprite
         btn_poke.place(x= 60, y=0)
-    
-    
 
-    except:
-        try:
-            url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon-species/{pokemon}.png"
-            response = requests.get(url)
-            poke_image_data = response.content
-            poke_sprite = Image.open(io.BytesIO(poke_image_data))
-            poke_sprite = ImageTk.PhotoImage(poke_sprite)
+    elif pokemon.isalpha():
+        
+        url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon-species/{pokemon}.png"
+        response = requests.get(url)
+        poke_image_data = response.content
+        poke_sprite = Image.open(io.BytesIO(poke_image_data))
+        poke_sprite = ImageTk.PhotoImage(poke_sprite)
+        btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+        btn_poke.image = poke_sprite
+        btn_poke.place(x= 60, y=0)
 
-        except:
-            btn_invalid_pokemon = tk.Label(inputted_pokemon_window, text="Invalid Pokemon", fg="black")
-            btn_invalid_pokemon.place(x= 30, y=0)
+    else:
+        btn_invalid_pokemon = tk.Label(inputted_pokemon_window, text="Invalid Pokemon", fg="black")
+        btn_invalid_pokemon.place(x= 30, y=0)
 
 
 #subroutine where pokemon sprite is fetched
