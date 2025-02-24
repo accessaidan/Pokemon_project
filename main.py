@@ -271,20 +271,32 @@ def check_pokemon_sub():
         btn_poke.image = poke_sprite
         btn_poke.place(x= 60, y=0)
     
+    
+
     except:
-        tk.Label(inputted_pokemon_window, text="Invalid Pokemon Number", fg="red")
-        btn_poke.place(x= 60, y=0)
+        try:
+            url = "https://pokeapi.co/api/v2/pokemon/1/id"
+            response = requests.get(url)
+            pokedex_number = response.content
+            poke_sprite = fetch_pokemon_sprite(pokedex_number)
+            btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+            btn_poke.image = poke_sprite
+            btn_poke.place(x= 60, y=0)
+
+        except:
+            btn_invalid_pokemon = tk.Label(inputted_pokemon_window, text="Invalid Pokemon", fg="black")
+            btn_invalid_pokemon.place(x= 30, y=0)
 
 
 #subroutine where pokemon sprite is fetched
 def fetch_pokemon_sprite(pokemon_id):
     url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon_id}.png"
     response = requests.get(url)
-    poke1_image_data = response.content
-    poke1_sprite = Image.open(io.BytesIO(poke1_image_data))
-    poke1_sprite = ImageTk.PhotoImage(poke1_sprite)
+    poke_image_data = response.content
+    poke_sprite = Image.open(io.BytesIO(poke_image_data))
+    poke_sprite = ImageTk.PhotoImage(poke_sprite)
 
-    return poke1_sprite
+    return poke_sprite
 
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
