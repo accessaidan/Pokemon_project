@@ -129,6 +129,8 @@ def main_menu_sub():
 def back_to_menu_sub():
     frm_profile_menu.pack_forget()
     frm_show_teams_menu.pack_forget()
+    frm_pokedex_menu.pack_forget()
+    frm_make_team.pack_forget()
     frm_main_menu.pack()
 
 #subroutine for profile menu
@@ -159,6 +161,9 @@ def delete_account_function_sub():
 
 ##Buttons for functions in main menu
 #subroutine to see poekdex
+def see_dex_sub():
+    frm_main_menu.pack_forget()
+    frm_pokedex_menu.pack()
 
 #subroutie for seeing teams from the anime
 def see_teams_sub():
@@ -168,7 +173,7 @@ def see_teams_sub():
 def show_team_sub(character):
     global username
     user_data = pd.read_csv('user_data.csv')
-    
+
     if character == "user":
         character_name = username
         poke1 = user_data.loc[user_data['username'] == username, 'poke1'].values[0]
@@ -229,7 +234,7 @@ def show_team_sub(character):
 
     btn_poke4 = tk.Button(show_team_window, image=(poke_sprite), fg="black",height=120,width=120)
     btn_poke4.image = poke_sprite
-    btn_poke4.place(x= 155, y=525)
+    btn_poke4.place(x= 135, y=525)
 
     #pokemon 5
     poke_sprite = fetch_pokemon_sprite(poke5)
@@ -247,6 +252,28 @@ def show_team_sub(character):
 
 
 #subrtoutine to make a team
+def team_builder_sub():
+    frm_main_menu.pack_forget()
+    frm_make_team.pack()
+
+#subroutine to see if inputted pokemon exists
+def check_pokemon_sub():
+    pokemon = txt_make_team.get()
+
+    inputted_pokemon_window = tk.Toplevel(window)
+    inputted_pokemon_window.geometry('240x240')
+
+    try:
+
+        poke_sprite = fetch_pokemon_sprite(pokemon)
+
+        btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+        btn_poke.image = poke_sprite
+        btn_poke.place(x= 60, y=0)
+    
+    except:
+        tk.Label(inputted_pokemon_window, text="Invalid Pokemon Number", fg="red")
+        btn_poke.place(x= 60, y=0)
 
 
 #subroutine where pokemon sprite is fetched
@@ -338,7 +365,7 @@ frm_main_menu = tk.Frame(window, width=910, height=910)
 
 
 #see pokedex button
-see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12)
+see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= see_dex_sub)
 see_dex.place(x= 265, y=265)
 
 #see teams button
@@ -346,7 +373,7 @@ see_teams = tk.Button(frm_main_menu, text = "See teams \n from anime", fg="black
 see_teams.place(x=395, y= 265)
 
 #team builder button
-team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=6,width=12 )
+team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=6,width=12, command= team_builder_sub)
 team_builder.place(x= 525, y=265)
 
 #profile button
@@ -379,9 +406,12 @@ frm_pokedex_menu = tk.Frame(window, width=910, height=910)
 
 
 #Back to menu button
-back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12)
+back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12, command=back_to_menu_sub)
 back.place(x= 5, y=5 )
-
+#profile button
+#profile button
+profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile.place(x=785,y=5)
 # Loop for part of pokedex select
 
 
@@ -419,9 +449,25 @@ btn_brock.place(x= 395, y=135)
 
 
 ##Make a team ##########################################
+frm_make_team = tk.Frame(window, width=910, height=910)
 
+#back to menu button
+back = tk.Button(frm_make_team, text="Back to menu", fg="Black",height=6,width=12, command= back_to_menu_sub)
+back.place(x= 5, y=5 )
+#profile button
+#profile button
+profile = tk.Button(frm_make_team, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile.place(x=785,y=5)
 
-
+#what to enter label
+lbl_make_team = tk.Label(frm_make_team, text= 'Enter the desired \n pokemons name or \n pokedex number',foreground='black', height=6, width=18)
+lbl_make_team.place(x= 365, y=275)
+#entry for desired pokemon
+txt_make_team = tk.Entry(frm_make_team, textvariable='Enter desired pokemon name or pokedex number', foreground='black')
+txt_make_team.place(x= 365, y=395)
+#submitt pokemon
+btn_submit_pokemon = tk.Button(frm_make_team, text='submit', fg='black', height=5,width=12, command=check_pokemon_sub)
+btn_submit_pokemon.place(x=395, y=525)
 
 
 
