@@ -9,7 +9,7 @@ global username
 username = ""
 
 window = tk.Tk()
-window.geometry("910x910")
+#window.geometry("910x910")
 
 window.rowconfigure([0,1,2,3,4,5,6], minsize=120)
 window.columnconfigure([0,1,2,3,4,5,6], minsize=120)
@@ -263,29 +263,115 @@ def team_builder_sub():
 def check_pokemon_sub():
     pokemon = txt_make_team.get()
 
-    inputted_pokemon_window = tk.Toplevel(window)
-    inputted_pokemon_window.geometry('240x240')
 
-    if pokemon.isdigit():
-        poke_sprite = fetch_pokemon_sprite(pokemon)
+
+    try: 
+        pokemon_id = pokemon
+        poke_sprite = fetch_pokemon_sprite(pokemon_id)
+
+        inputted_pokemon_window = tk.Toplevel(window)
+        inputted_pokemon_window.geometry('240x240')
+
         btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
         btn_poke.image = poke_sprite
         btn_poke.place(x= 60, y=0)
+        flag = False
+        #add_to_team(pokemon_id, inputted_pokemon_window)
+    
 
-    elif pokemon.isalpha():
-        
-        url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon-species/{pokemon}.png"
-        response = requests.get(url)
-        poke_image_data = response.content
-        poke_sprite = Image.open(io.BytesIO(poke_image_data))
-        poke_sprite = ImageTk.PhotoImage(poke_sprite)
-        btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
-        btn_poke.image = poke_sprite
-        btn_poke.place(x= 60, y=0)
+    except:
+        try:
+            pokemon_id = fetch_pokemon_id(pokemon.lower())
+            poke_sprite = fetch_pokemon_sprite(pokemon_id)
 
-    else:
-        btn_invalid_pokemon = tk.Label(inputted_pokemon_window, text="Invalid Pokemon", fg="black")
-        btn_invalid_pokemon.place(x= 30, y=0)
+            inputted_pokemon_window = tk.Toplevel(window)
+            inputted_pokemon_window.geometry('240x240')
+
+            btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+            btn_poke.image = poke_sprite
+            btn_poke.place(x= 60, y=0)
+            flag = False
+            #add_to_team(pokemon_id, inputted_pokemon_window)
+
+        except:
+            inputted_pokemon_window = tk.Toplevel(window)
+            inputted_pokemon_window.geometry('240x50')
+            btn_invalid_pokemon = tk.Label(inputted_pokemon_window, text="Invalid Pokemon", fg="black")
+            btn_invalid_pokemon.place(x= 30, y=0)
+            flag = True
+    
+    if flag == False:   #add to team button doesnt work if invalid pokemon is entered
+        #button to add to team
+        btn_add_to_team = tk.Button(inputted_pokemon_window, text="Add to team", fg="black",background="green",
+                                     height=6, width=12, command= lambda: select_remove_pokemon_sub(pokemon_id))
+        btn_add_to_team.place(x= 10, y=125)
+        #btn to not add to team
+        btn_not_add_to_team = tk.Button(inputted_pokemon_window, text="dont add to team", fg="black",background="red", height=6, width=12)
+        btn_not_add_to_team.place(x= 130, y=125)
+
+
+#subroutine to select which pokemon to revove from team
+def select_remove_pokemon_sub(pokemon_id):
+    select_pokemon_remove_window = tk.Toplevel(window)
+    select_pokemon_remove_window.geometry('910x910')
+
+    global username
+    user_data = pd.read_csv('user_data.csv')
+
+
+    poke1 = user_data.loc[user_data['username'] == username, 'poke1'].values[0]
+    poke2 = user_data.loc[user_data['username'] == username, 'poke2'].values[0]
+    poke3 = user_data.loc[user_data['username'] == username, 'poke3'].values[0]
+    poke4 = user_data.loc[user_data['username'] == username, 'poke4'].values[0]
+    poke5 = user_data.loc[user_data['username'] == username, 'poke5'].values[0]
+    poke6 = user_data.loc[user_data['username'] == username, 'poke6'].values[0]
+
+    #pokemon 1
+    poke_sprite = fetch_pokemon_sprite(poke1)
+
+    btn_poke1 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke1.image = poke_sprite
+    btn_poke1.place(x= 135, y=265)
+
+    #pokemon 2
+    poke_sprite = fetch_pokemon_sprite(poke2)
+
+    btn_poke2 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke2.image = poke_sprite
+    btn_poke2.place(x= 395, y=265)
+
+    #pokemon 3
+    poke_sprite = fetch_pokemon_sprite(poke3)
+
+    btn_poke3 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke3.image = poke_sprite
+    btn_poke3.place(x= 655, y=265)
+    
+    #pokemon 4
+    poke_sprite = fetch_pokemon_sprite(poke4)
+
+    btn_poke4 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke4.image = poke_sprite
+    btn_poke4.place(x= 135, y=525)
+
+    #pokemon 5
+    poke_sprite = fetch_pokemon_sprite(poke5)
+
+    btn_poke5 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke5.image = poke_sprite
+    btn_poke5.place(x= 395, y=525)
+
+    #pokemon 6
+    poke_sprite = fetch_pokemon_sprite(poke6)
+
+    btn_poke6 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke6.image = poke_sprite
+    btn_poke6.place(x= 655, y=525)
+    #label instructinh user
+    lbl_instruct = tk.Label(select_pokemon_remove_window, text="Select which Pokemon to remove from your team:", fg="black")
+    lbl_instruct.place(x= 335, y=5)
+
+
 
 
 #subroutine where pokemon sprite is fetched
@@ -296,7 +382,17 @@ def fetch_pokemon_sprite(pokemon_id):
     poke_sprite = Image.open(io.BytesIO(poke_image_data))
     poke_sprite = ImageTk.PhotoImage(poke_sprite)
 
+    
+
     return poke_sprite
+#subroutine to get the pokemon id from its name
+def fetch_pokemon_id(pokemon):
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
+    response = requests.get(url)
+    pokemon_data = response.json()
+    pokemon_id = pokemon_data['id']
+    
+    return pokemon_id
 
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
@@ -362,14 +458,6 @@ txt_password.place(x= 385, y=325)
 ##login submit button
 btn_new_submit = tk.Button(frm_login, text='submit', fg='black', height=5,width=12, command=check_user_pass)
 btn_new_submit.place(x=395,y=525)
-
-
-
-
-
-
-
-
 
 
 ##Main menu frame ######################################################
