@@ -332,7 +332,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke1)
 
     btn_poke1 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke1, "poke1"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke1", select_pokemon_remove_window))
     btn_poke1.image = poke_sprite
     btn_poke1.place(x= 135, y=265)
 
@@ -340,7 +340,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke2)
 
     btn_poke2 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke2, "poke2"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke2", select_pokemon_remove_window))
     btn_poke2.image = poke_sprite
     btn_poke2.place(x= 395, y=265)
 
@@ -348,7 +348,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke3)
 
     btn_poke3 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke3, "poke3"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke3", select_pokemon_remove_window))
     btn_poke3.image = poke_sprite
     btn_poke3.place(x= 655, y=265)
     
@@ -356,7 +356,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke4)
 
     btn_poke4 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke4, "poke4"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke4", select_pokemon_remove_window))
     btn_poke4.image = poke_sprite
     btn_poke4.place(x= 135, y=525)
 
@@ -364,7 +364,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke5)
 
     btn_poke5 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke5, "poke5"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke5", select_pokemon_remove_window))
     btn_poke5.image = poke_sprite
     btn_poke5.place(x= 395, y=525)
 
@@ -372,7 +372,7 @@ def select_remove_pokemon_sub(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(poke6)
 
     btn_poke6 = tk.Button(select_pokemon_remove_window, image=(poke_sprite), fg="black",height=120,width=120, 
-                          command= lambda: replace_pokemon(pokemon_id, poke6, "poke6"))
+                          command= lambda: replace_pokemon(pokemon_id, "poke6", select_pokemon_remove_window))
     btn_poke6.image = poke_sprite
     btn_poke6.place(x= 655, y=525)
     #label instructinh user
@@ -380,12 +380,18 @@ def select_remove_pokemon_sub(pokemon_id):
     lbl_instruct.place(x= 335, y=5)
 
 #subroutine to replace pokemon
-def replace_pokemon(pokemon_id, existing_pokemon, placement):
+def replace_pokemon(pokemon_id, placement, select_pokemon_remove_window):
     global username
     user_data = pd.read_csv('user_data.csv')
     user_data.loc[user_data['username'] == username, placement] = str(pokemon_id)
     
     user_data.to_csv('user_data.csv')
+    #popup to say it has been replaced
+    replaced_pokemon_window = tk.Toplevel(window)
+    replaced_pokemon_window.geometry('250x50')
+    btn_replaced_pokemon = tk.Label(replaced_pokemon_window, text="Replaced", fg="black")
+    btn_replaced_pokemon.place(x= 30, y=0)
+    select_pokemon_remove_window.destroy()
 
 #subroutine where pokemon sprite is fetched
 def fetch_pokemon_sprite(pokemon_id):
