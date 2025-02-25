@@ -306,8 +306,10 @@ def check_pokemon_sub():
                                      height=6, width=12, command= lambda: select_remove_pokemon_sub(pokemon_id))
         btn_add_to_team.place(x= 10, y=125)
         #btn to not add to team
-        btn_not_add_to_team = tk.Button(inputted_pokemon_window, text="dont add to team", fg="black",background="red", height=6, width=12)
+        btn_not_add_to_team = tk.Button(inputted_pokemon_window, text="dont add to team", fg="black",background="red", height=6, width=12,
+        command= lambda: inputted_pokemon_window.destroy())
         btn_not_add_to_team.place(x= 130, y=125)
+
 
 
 #subroutine to select which pokemon to revove from team
