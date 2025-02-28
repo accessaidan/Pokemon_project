@@ -4,7 +4,7 @@ import os
 import requests
 from PIL import Image, ImageTk
 import io
-import constants as c
+
 
 global username
 username = ""
@@ -583,11 +583,11 @@ back.place(x= 5, y=5 )
 profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
 profile.place(x=785,y=5)
 #brocks team
-brock_photo = tk.PhotoImage(file='brock.png')
+brock_photo = tk.PhotoImage(file='assets/brock.png')
 btn_brock = tk.Button(frm_show_teams_menu, image=(brock_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("brock")) # 0 is brock
 btn_brock.place(x= 135, y=135)
 #mistys team
-misty_photo = tk.PhotoImage(file='misty.png')
+misty_photo = tk.PhotoImage(file='assets/misty.png')
 btn_brock = tk.Button(frm_show_teams_menu, image=(misty_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("misty")) # 0 is brock
 btn_brock.place(x= 395, y=135)
 
