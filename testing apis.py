@@ -9,7 +9,7 @@ def any_pokemon(url):
     for pokemon in pokemon_data[search]:
         pokemon_names.append(pokemon["name"])
     return pokemon_names
-type = input("what type to use? ")
+type = "any"
 
 if type == "any":
     url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
@@ -33,4 +33,6 @@ else:
 
 #fire_type_urls = dict.iloc[1,1]
 
-print(pokemon_names)
+
+print(pokemon_names[56])
+pokemon_name = pokemon_names[56]

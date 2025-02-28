@@ -408,6 +408,15 @@ def fetch_pokemon_id(pokemon):
     
     return pokemon_id
 
+# subroutine to remove any filter from pokedex
+def any_pokemon(url):
+    response = requests.get(url)
+    pokemon_data = response.json()
+    pokemon_names = []
+    for pokemon in pokemon_data["results"]:
+        pokemon_names.append(pokemon["name"])
+    return pokemon_names
+
 #subroutine for pokedex
 def pokedex_menu_sub():
     frm_pokedex_menu = tk.Frame(window, width=910, height=910)
@@ -423,28 +432,47 @@ def pokedex_menu_sub():
     x= 135
     y=135
     index = 0
-    url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
-    response = requests.get(url)
-    pokemon_type_data = response.json()
-    pokemon_names = []
-    for pokemon in pokemon_type_data["results"]:
-        pokemon_name_data = (pokemon_type_data["results"])
-        pokemon_names.append(pokemon_name_data[index])
-        index = index + 1
-    index = 0
+    
+    type = "any"
+
+    if type == "any":
+        url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
+        search = "results"
+        pokemon_names = any_pokemon(url)
+    else:
+        if type == "fire":
+            url = f"https://pokeapi.co/api/v2/type/fire"
+            search = "pokemon"
+
+        else:
+            print("please enter a valid pokemon thoe")
+        response = requests.get(url)
+        pokemon_data = response.json()
+
+        # Extract the URLs for each Pokémon that has Fire as its type
+        pokemon_names = []
+        for pokemon in pokemon_data[search]:
+            pokemon_names.append(pokemon[search]["name"])
+
+    
+
+
+
+
     for i  in range(5):
         for i in range(5):
+
             pokemon_name = pokemon_names[index]
             pokemon_id = fetch_pokemon_id(pokemon_name)
             poke_sprite = fetch_pokemon_sprite(pokemon_id)
             index = index + 1
-
-            # Extract the URLs for each Pokémon that has Fire as its type
-           
             btn_pokedex_pokemon = tk.Button(frm_pokedex_menu, image=(poke_sprite), fg="black",height=120,width=120)
-            btn_pokedex_pokemon.place(x,y)
+            btn_pokedex_pokemon.place(x = x,y = y)
             x = x + 130
         y = y + 130
+    
+    frm_pokedex_menu.pack_forget()
+    frm_pokedex_menu.pack()
 
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
