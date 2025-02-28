@@ -164,10 +164,7 @@ def delete_account_function_sub():
 
 
 ##Buttons for functions in main menu
-#subroutine to see poekdex
-def see_dex_sub():
-    frm_main_menu.pack_forget()
-    frm_pokedex_menu.pack()
+
 
 #subroutie for seeing teams from the anime
 def see_teams_sub():
@@ -414,6 +411,39 @@ def fetch_pokemon_id(pokemon):
     
     return pokemon_id
 
+#subroutine for pokedex
+def pokedex_menu_sub():
+    frm_pokedex_menu = tk.Frame(window, width=910, height=910)
+
+
+    #Back to menu button
+    back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12, command=back_to_menu_sub)
+    back.place(x= 5, y=5 )
+    #profile button
+    #profile button
+    profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+    profile.place(x=785,y=5)
+    # Loop for part of pokedex select
+
+
+
+        
+    frm_main_menu.pack_forget()
+    frm_pokedex_menu.pack()
+    url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
+    all_pokemoon = requests.get(url)
+    x = 135
+    y = 135
+    for i in range(5):
+    # Add code here to create a button for each pokemon in the pokedex
+        for i in range(5):
+            btn_pokemon = tk.Button()
+
+
+
+            x = x + 130
+        y = y + 130
+
 ############################Start of Tkinter stuff ###########################
 #Login screen #######################################################
 frm_reg_or_log = tk.Frame(window, width=910, height=910)
@@ -485,7 +515,7 @@ frm_main_menu = tk.Frame(window, width=910, height=910)
 
 
 #see pokedex button
-see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= see_dex_sub)
+see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= pokedex_menu_sub)
 see_dex.place(x= 265, y=265)
 
 #see teams button
@@ -533,7 +563,6 @@ back.place(x= 5, y=5 )
 profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
 profile.place(x=785,y=5)
 # Loop for part of pokedex select
-
 
 
 
