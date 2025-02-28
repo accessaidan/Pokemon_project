@@ -130,9 +130,7 @@ def main_menu_sub():
 def back_to_menu_sub():
     frm_profile_menu.pack_forget()
     frm_show_teams_menu.pack_forget()
-    frm_pokedex_menu.pack_forget()
     frm_make_team.pack_forget()
-    frm_pokedex_menu.pack_forget()
     frm_main_menu.pack()
 
 #subroutine for profile menu
@@ -140,7 +138,6 @@ def profile_sub():
     frm_main_menu.pack_forget()
     frm_show_teams_menu.pack_forget()
     frm_make_team.pack_forget()
-    frm_pokedex_menu.pack_forget()
     frm_profile_menu.pack()
 # subroutine for logging out
 def log_out_sub():
@@ -415,7 +412,6 @@ def fetch_pokemon_id(pokemon):
 def pokedex_menu_sub():
     frm_pokedex_menu = tk.Frame(window, width=910, height=910)
 
-
     #Back to menu button
     back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12, command=back_to_menu_sub)
     back.place(x= 5, y=5 )
@@ -424,23 +420,29 @@ def pokedex_menu_sub():
     profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
     profile.place(x=785,y=5)
     # Loop for part of pokedex select
-
-
-
-        
-    frm_main_menu.pack_forget()
-    frm_pokedex_menu.pack()
+    x= 135
+    y=135
+    index = 0
     url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
-    all_pokemoon = requests.get(url)
-    x = 135
-    y = 135
-    for i in range(5):
-    # Add code here to create a button for each pokemon in the pokedex
+    response = requests.get(url)
+    pokemon_type_data = response.json()
+    pokemon_names = []
+    for pokemon in pokemon_type_data["results"]:
+        pokemon_name_data = (pokemon_type_data["results"])
+        pokemon_names.append(pokemon_name_data[index])
+        index = index + 1
+    index = 0
+    for i  in range(5):
         for i in range(5):
-            btn_pokemon = tk.Button()
+            pokemon_name = pokemon_names[index]
+            pokemon_id = fetch_pokemon_id(pokemon_name)
+            poke_sprite = fetch_pokemon_sprite(pokemon_id)
+            index = index + 1
 
-
-
+            # Extract the URLs for each Pokémon that has Fire as its type
+           
+            btn_pokedex_pokemon = tk.Button(frm_pokedex_menu, image=(poke_sprite), fg="black",height=120,width=120)
+            btn_pokedex_pokemon.place(x,y)
             x = x + 130
         y = y + 130
 
@@ -552,17 +554,6 @@ back = tk.Button(frm_profile_menu, text="Back to menu", fg="Black",height=6,widt
 back.place(x= 5, y=5 )
 
 ##Pokedex menu frame #######################################################
-frm_pokedex_menu = tk.Frame(window, width=910, height=910)
-
-
-#Back to menu button
-back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12, command=back_to_menu_sub)
-back.place(x= 5, y=5 )
-#profile button
-#profile button
-profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
-profile.place(x=785,y=5)
-# Loop for part of pokedex select
 
 
 
