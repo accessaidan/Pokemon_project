@@ -97,8 +97,9 @@ def check_user_pass():
     else:
         ###reads csv
         user_data = pd.read_csv('user_data.csv')
-        
-        if username_input in user_data["username"].values:
+
+        usernames = user_data["username"].values
+        if username_input in usernames:
             if password_input in user_data["password"].values: ########################### Does not fucking work
                 login_success = tk.Toplevel(window)
                 login_success.title("SUCCESS")
