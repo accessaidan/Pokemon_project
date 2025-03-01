@@ -64,7 +64,7 @@ def check_new_user():
                     "poke3":0,
                     "poke4":0,
                     "poke5":0,
-                    "poke6":0,
+                    "poke6":0
                 }
             )
             user_data.loc[len(user_data)] = adding_data
@@ -126,19 +126,7 @@ def main_menu_sub():
     frm_login.pack_forget()
     frm_register.pack_forget()
     frm_main_menu.pack()
-#back to menu button
-def back_to_menu_sub():
-    frm_profile_menu.pack_forget()
-    frm_show_teams_menu.pack_forget()
-    frm_make_team.pack_forget()
-    frm_main_menu.pack()
 
-#subroutine for profile menu
-def profile_sub():                      
-    frm_main_menu.pack_forget()
-    frm_show_teams_menu.pack_forget()
-    frm_make_team.pack_forget()
-    frm_profile_menu.pack()
 # subroutine for logging out
 def log_out_sub():
     frm_profile_menu.pack_forget()
@@ -417,19 +405,22 @@ def any_pokemon(url):
         pokemon_names.append(pokemon["name"])
     return pokemon_names
 
+#subrtoutine to show the pokedex
+
+
 #subroutine for pokedex
 def pokedex_menu_sub():
     frm_pokedex_menu = tk.Frame(window, width=910, height=910)
 
     #Back to menu button
-    back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12, command=back_to_menu_sub)
+    back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12,  command=lambda: [frm_pokedex_menu.pack_forget(), frm_main_menu.pack()])
     back.place(x= 5, y=5 )
     #profile button
     #profile button
-    profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+    profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12,  command=lambda: [frm_pokedex_menu.pack_forget(),  frm_profile_menu.pack()])
     profile.place(x=785,y=5)
     # Loop for part of pokedex select
-    x= 135
+    x= 125
     y=135
     index = 0
     
@@ -469,9 +460,10 @@ def pokedex_menu_sub():
             btn_pokedex_pokemon = tk.Button(frm_pokedex_menu, image=(poke_sprite), fg="black",height=120,width=120)
             btn_pokedex_pokemon.place(x = x,y = y)
             x = x + 130
+        x = 125
         y = y + 130
     
-    frm_pokedex_menu.pack_forget()
+    frm_main_menu.pack_forget()
     frm_pokedex_menu.pack()
 
 ############################Start of Tkinter stuff ###########################
@@ -557,7 +549,7 @@ team_builder = tk.Button(frm_main_menu, text = "Make a team", fg="black",height=
 team_builder.place(x= 525, y=265)
 
 #profile button
-profile = tk.Button(frm_main_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile = tk.Button(frm_main_menu, text=('profile'), fg='black',height=6, width=12, command= lambda: [frm_main_menu.pack_forget(), frm_profile_menu.pack() ] )
 profile.place(x=785,y=5)
 #########################################################################
 
@@ -578,16 +570,8 @@ delete_account = tk.Button(frm_profile_menu, text = "Delete account", fg="black"
 delete_account.place(x= 525, y=265)
 
 #Back to menu button
-back = tk.Button(frm_profile_menu, text="Back to menu", fg="Black",height=6,width=12,command=back_to_menu_sub)
+back = tk.Button(frm_profile_menu, text="Back to menu", fg="Black",height=6,width=12,command=lambda: [frm_profile_menu.pack_forget(), frm_main_menu.pack()])
 back.place(x= 5, y=5 )
-
-##Pokedex menu frame #######################################################
-
-
-
-
-
-
 
 
 ##See teams ############################################################################
@@ -596,10 +580,10 @@ frm_show_teams_menu = tk.Frame(window, width=910, height=910)
 
 
 #back to menu button
-back = tk.Button(frm_show_teams_menu, text="Back to menu", fg="Black",height=6,width=12, command= back_to_menu_sub)
+back = tk.Button(frm_show_teams_menu, text="Back to menu", fg="Black",height=6,width=12, command= lambda: [frm_show_teams_menu.pack_forget(), frm_main_menu.pack()])
 back.place(x= 5, y=5 )
 #profile button
-profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= lambda: [frm_show_teams_menu.pack_forget(), frm_profile_menu.pack() ] )
 profile.place(x=785,y=5)
 #brocks team
 brock_photo = tk.PhotoImage(file='assets/brock.png')
@@ -620,11 +604,11 @@ btn_brock.place(x= 395, y=135)
 frm_make_team = tk.Frame(window, width=910, height=910)
 
 #back to menu button
-back = tk.Button(frm_make_team, text="Back to menu", fg="Black",height=6,width=12, command= back_to_menu_sub)
+back = tk.Button(frm_make_team, text="Back to menu", fg="Black",height=6,width=12, command= lambda: [frm_make_team.pack_forget(), frm_main_menu.pack()] )
 back.place(x= 5, y=5 )
 #profile button
 #profile button
-profile = tk.Button(frm_make_team, text=('profile'), fg='black',height=6, width=12, command= profile_sub)
+profile = tk.Button(frm_make_team, text=('profile'), fg='black',height=6, width=12, command= lambda: [frm_make_team.pack_forget(), frm_profile_menu.pack()] )
 profile.place(x=785,y=5)
 
 #what to enter label
