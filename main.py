@@ -428,7 +428,7 @@ def filter_type_sub():
 
 # subroutine to check a correct type was entered
 def check_type_sub(type_entered):
-    type_entered = txt_type_filter.get()
+
     if type_entered == "fire":
         pokedex_menu_sub(type_entered)
     elif type_entered == "water":
@@ -596,7 +596,8 @@ frm_main_menu = tk.Frame(window, width=910, height=910)
 
 
 #see pokedex button
-see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= pokedex_menu_sub("any"))
+type = "any"
+see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= pokedex_menu_sub(type))
 see_dex.place(x= 265, y=265)
 
 #see teams button
