@@ -406,11 +406,77 @@ def any_pokemon(url):
         pokemon_names.append(pokemon["name"])
     return pokemon_names
 
-#subrtoutine to show the pokedex
+#subroutine to display the filtered pokedex
+def filtered_pokemon(url):
+    response = requests.get(url)
+    pokemon_data = response.json()
+    pokemon_names = []
+    for pokemon in pokemon_data["pokemon"]:
+        pokemon_names.append(pokemon["pokemon"]["name"])
+    return pokemon_names
+
+#subrtoutine to filter the pokedex
+def filter_type_sub():
+    type_select_window = tk.Toplevel(window)
+    type_select_window.geometry('250x250')
+    lbl_instruct = tk.Label(type_select_window, text="Select a type for your filter\n enter [any] to remove a filter", fg="black")
+    lbl_instruct.place(x= 5, y=5)
+    txt_type_filter = tk.Entry(type_select_window, text="Type", fg="black")
+    txt_type_filter.place(x= 5, y=30)
+
+    btn_submit_type = tk.Button(type_select_window, text="submit type", fg="black", command= lambda:[check_type_sub, type_select_window.destroy()])
+
+# subroutine to check a correct type was entered
+def check_type_sub(type_entered):
+    type_entered = txt_type_filter.get()
+    if type_entered == "fire":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "water":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "grass":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "electric":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "ice":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "fighting":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "poison":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "ground":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "flying":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "rock":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "bug":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "ghost":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "dragon":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "psychic":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "dark":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "fairy":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "steel":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "normal":
+        pokedex_menu_sub(type_entered)
+    elif type_entered == "any":
+        pokedex_menu_sub(type_entered)
+    else:
+        not_type_window = tk.Toplevel(window)
+        not_type_window.geometry('250x50')
+        btn_not_type = tk.Label(not_type_window, text="Invalid type", fg="black")
+        btn_not_type.place(x= 30, y=0)
+        filter_type_sub()
 
 
 #subroutine for pokedex
-def pokedex_menu_sub():
+def pokedex_menu_sub(type):
     frm_pokedex_menu = tk.Frame(window, width=910, height=910)
 
     #Back to menu button
@@ -420,6 +486,8 @@ def pokedex_menu_sub():
     #profile button
     profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12,  command=lambda: [frm_pokedex_menu.pack_forget(),  frm_profile_menu.pack()])
     profile.place(x=785,y=5)
+    #filter button
+    btn_filter = tk.Button(frm_pokedex_menu, text = "Filter pokemon", fg= "black", height=6, width=12, command= lambda: [filter_type_sub])
     # Loop for part of pokedex select
     x= 125
     y=135
@@ -432,24 +500,14 @@ def pokedex_menu_sub():
         search = "results"
         pokemon_names = any_pokemon(url)
     else:
-        if type == "fire":
-            url = f"https://pokeapi.co/api/v2/type/fire"
-            search = "pokemon"
+        url = f"https://pokeapi.co/api/v2/type/{type}"
+        search = "pokemon"
+        pokemon_names = filtered_pokemon(url)
 
-        else:
-            print("please enter a valid pokemon thoe")
-        response = requests.get(url)
-        pokemon_data = response.json()
+        
 
         # Extract the URLs for each Pokémon that has Fire as its type
         pokemon_names = []
-        for pokemon in pokemon_data[search]:
-            pokemon_names.append(pokemon[search]["name"])
-
-    
-
-
-
 
     for i  in range(5):
         for i in range(5):
@@ -538,7 +596,7 @@ frm_main_menu = tk.Frame(window, width=910, height=910)
 
 
 #see pokedex button
-see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= pokedex_menu_sub)
+see_dex = tk.Button(frm_main_menu, text = "See Pokedex", fg="black",height=6,width=12, command= pokedex_menu_sub("any"))
 see_dex.place(x= 265, y=265)
 
 #see teams button
