@@ -440,17 +440,8 @@ def filtered_pokemon(url):
         pokemon_names.append(pokemon["pokemon"]["name"])
     return pokemon_names
 
-#subrtoutine to filter the pokedex
-def filter_type_sub():
-    type_select_window = tk.Toplevel(window)
-    type_select_window.geometry('250x250')
-    lbl_instruct = tk.Label(type_select_window, text="Select a type for your filter enter [any] to remove a filter", fg="black")
-    lbl_instruct.place(x= 5, y=5)
-    txt_type_filter = tk.Entry(type_select_window, text="Type", fg="black")
-    txt_type_filter.place(x= 5, y=30)
 
-    btn_submit_type = tk.Button(type_select_window, text="submit type", fg="black", command= lambda:[check_type_sub(txt_type_filter.get()), type_select_window.destroy()])
-    btn_submit_type.place(x= 5, y=60)
+
 
 #subrotuien for button when pokemon click
 def on_poke_click(pokemon_id):
@@ -471,61 +462,108 @@ def on_poke_click(pokemon_id):
     btn_not_add_to_team = tk.Button(inputted_pokemon_window, text="dont add to team", fg="black",background="red", height=6, width=12,
     command= lambda: inputted_pokemon_window.destroy())
     btn_not_add_to_team.place(x= 130, y=125)
-# subroutine to check a correct type was entered
-def check_type_sub(type_entered):
+
+
+
+
+#subrtoutine to filter the pokedex
+def filter_type_sub():
+    type_select_window = tk.Toplevel(window)
+    type_select_window.geometry('250x250')
+    lbl_instruct = tk.Label(type_select_window, text="Select a type for your filter enter [any] to remove a filter", fg="black")
+    lbl_instruct.place(x= 5, y=5)
+    txt_type_filter = tk.Entry(type_select_window, text="Type", fg="black")
+    txt_type_filter.place(x= 5, y=30)
+    flag = False
+    btn_submit_type = tk.Button(type_select_window, text="submit type", fg="black", command= flag == True)
+    btn_submit_type.place(x= 5, y=60)
+    
+    if flag == True:
+        type_entered = txt_type_filter.get().lower()
 
     if type_entered == "fire":
         pokedex_menu_sub(type_entered, 0)
+        type_select_window.destroy()
     elif type_entered == "water":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "grass":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "electric":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "ice":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "fighting":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "poison":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "ground":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "flying":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "rock":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "bug":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "ghost":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "dragon":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "psychic":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "dark":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "fairy":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "steel":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "normal":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     elif type_entered == "any":
-        pokedex_menu_sub(type_entered, 0)
+        pokedex_menu_sub(type_entered)
+        type_select_window.destroy()
     else:
         not_type_window = tk.Toplevel(window)
         not_type_window.geometry('250x50')
-        btn_not_type = tk.Label(not_type_window, text="Invalid type", fg="black")
-        btn_not_type.place(x= 30, y=0)
+        lbl_not_type = tk.Label(not_type_window, text="Invalid type", fg="black")
+        lbl_not_type.place(x= 30, y=0)
+        type_select_window.destroy()
         filter_type_sub()
+
+
+
+#frame to test if something will work
+frm_test_pokedex_menu = tk.Frame(window, width = 910, height = 910)
+#Back to menu button
+back = tk.Button(frm_test_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12)
+back.place(x= 5, y=5 )
+#profile button
+#profile button
+profile = tk.Button(frm_test_pokedex_menu, text=('profile'), fg='black',height=6, width=12)
+profile.place(x=785,y=5)
 
 
 #subroutine for pokedex
 def pokedex_menu_sub(type, index):
     frm_pokedex_menu = tk.Frame(window, width=910, height=910)
     frm_pokedex_menu.pack()
-    frm_pokedex_menu.pack_forget()
-
+    
     #Back to menu button
     back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12,  command=lambda: [frm_pokedex_menu.pack_forget(), frm_main_menu.pack()])
     back.place(x= 5, y=5 )
@@ -534,10 +572,12 @@ def pokedex_menu_sub(type, index):
     profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12,  command=lambda: [frm_pokedex_menu.pack_forget(),  frm_profile_menu.pack()])
     profile.place(x=785,y=5)
     #filter button
-    btn_filter = tk.Button(frm_pokedex_menu, text = "Filter pokemon", fg= "black", height=6, width=12, command= filter_type_sub)
+    btn_filter = tk.Button(frm_pokedex_menu, text = "Filter pokemon", fg= "black", height=6, width=12, command=lambda:[frm_pokedex_menu.pack_forget, frm_test_pokedex_menu.pack(), filter_type_sub] )
     btn_filter.place(x= 395, y=5)
+
+
     # buton to see next 25
-    btn_next_page = tk.Button(frm_pokedex_menu, text = "Next 25", fg= "black", height=6, width=12, command= lambda: pokedex_menu_sub(type,index + 25))
+    btn_next_page = tk.Button(frm_pokedex_menu, text = "Next 25", fg= "black", height=6, width=12, command= lambda: [frm_pokedex_menu.pack_forget(), pokedex_menu_sub(type,index + 25)])
     btn_next_page.place(x= 788, y= 395)
 
 
