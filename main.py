@@ -444,8 +444,7 @@ def filtered_pokemon(url):
 
 
 #subrotuien for button when pokemon click
-def on_poke_click(pokemon_id,type, index):
-    pokedex_menu_sub(type,index)
+def on_poke_click(pokemon_id):
     poke_sprite = fetch_pokemon_sprite(pokemon_id)
     poke_name = fetch_pokemon_name(pokemon_id)
     inputted_pokemon_window = tk.Toplevel(window)
@@ -470,82 +469,81 @@ def on_poke_click(pokemon_id,type, index):
 
 #subrtoutine to filter the pokedex
 def filter_type_sub():
-    type_select_window = tk.Toplevel(window)
-    type_select_window.geometry('250x250')
-    lbl_instruct = tk.Label(type_select_window, text="Select a type for your filter enter [any] to remove a filter", fg="black")
+    frm_type_select = tk.Frame(window, width= 910, height= 910)
+    frm_type_select.pack()
+    lbl_instruct = tk.Label(frm_type_select, text="Select a type for your filter enter [any] to remove a filter", fg="black")
     lbl_instruct.place(x= 5, y=5)
-    txt_type_filter = tk.Entry(type_select_window, text="Type", fg="black")
+    txt_type_filter = tk.Entry(frm_type_select, text="Type", fg="black")
     txt_type_filter.place(x= 5, y=30)
     flag = False
-    btn_submit_type = tk.Button(type_select_window, text="submit type", fg="black", command= flag == True)
+    btn_submit_type = tk.Button(frm_type_select, text="submit type", fg="black", command= flag == True)
     btn_submit_type.place(x= 5, y=60)
     
     if flag == True:
         type_entered = txt_type_filter.get().lower()
 
     if type_entered == "fire":
+        frm_type_select.pack_forget()
         pokedex_menu_sub(type_entered, 0)
-        type_select_window.destroy()
     elif type_entered == "water":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "grass":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "electric":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "ice":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "fighting":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "poison":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "ground":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "flying":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "rock":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "bug":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
-    elif type_entered == "ghost":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "dragon":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "psychic":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "dark":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "fairy":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "steel":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "normal":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     elif type_entered == "any":
-        pokedex_menu_sub(type_entered)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
+        pokedex_menu_sub(type_entered, 0)
     else:
         not_type_window = tk.Toplevel(window)
         not_type_window.geometry('250x50')
         lbl_not_type = tk.Label(not_type_window, text="Invalid type", fg="black")
         lbl_not_type.place(x= 30, y=0)
-        type_select_window.destroy()
+        frm_type_select.pack_forget()
         filter_type_sub()
 
 
@@ -602,7 +600,7 @@ def pokedex_menu_sub(type, index):
     pokemon_name_1 = pokemon_names[index] 
     pokemon_id_1 = fetch_pokemon_id(pokemon_name_1)
     poke_sprite_1 = fetch_pokemon_sprite(pokemon_id_1)
-    btn_pokedex_pokemon_1_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_1), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_1, type, index))
+    btn_pokedex_pokemon_1_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_1), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_1)])
     btn_pokedex_pokemon_1_1.place(x = 130,y = 130)
 
 
@@ -611,62 +609,62 @@ def pokedex_menu_sub(type, index):
     pokemon_name_2 = pokemon_names[index+ 1]
     pokemon_id_2 = fetch_pokemon_id(pokemon_name_2)
     poke_sprite_2 = fetch_pokemon_sprite(pokemon_id_2)
-    btn_pokedex_pokemon_1_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_2), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_2, type, index))
+    btn_pokedex_pokemon_1_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_2), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_2))
     btn_pokedex_pokemon_1_2.place(x = 260,y = 130)
 
     #button 3
     pokemon_name_3 = pokemon_names[index+ 2]
     pokemon_id_3 = fetch_pokemon_id(pokemon_name_3)
     poke_sprite_3 = fetch_pokemon_sprite(pokemon_id_3)
-    btn_pokedex_pokemon_1_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_3), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_3, type, index))
+    btn_pokedex_pokemon_1_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_3), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_3,))
     btn_pokedex_pokemon_1_3.place(x = 390,y = 130)
 
     #button 4
     pokemon_name_4 = pokemon_names[index+ 3]
     pokemon_id_4 = fetch_pokemon_id(pokemon_name_4)
     poke_sprite_4 = fetch_pokemon_sprite(pokemon_id_4)
-    btn_pokedex_pokemon_1_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_4), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_4, type, index))
+    btn_pokedex_pokemon_1_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_4), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_4,))
     btn_pokedex_pokemon_1_4.place(x = 520,y = 130)
 ##button 5
     pokemon_name_5 = pokemon_names[index+ 4]
     pokemon_id_5 = fetch_pokemon_id(pokemon_name_5)
     poke_sprite_5 = fetch_pokemon_sprite(pokemon_id_5)
-    btn_pokedex_pokemon_1_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_5), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_5, type, index))
+    btn_pokedex_pokemon_1_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_5), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_5))
     btn_pokedex_pokemon_1_5.place(x = 650,y = 130)
 
     #button 6
     pokemon_name_6 = pokemon_names[index+ 5]
     pokemon_id_6 = fetch_pokemon_id(pokemon_name_6)
     poke_sprite_6 = fetch_pokemon_sprite(pokemon_id_6)
-    btn_pokedex_pokemon_2_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_6), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_6, type, index))
+    btn_pokedex_pokemon_2_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_6), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_6))
     btn_pokedex_pokemon_2_1.place(x = 130,y = 260)
 
     ##button 7
     pokemon_name_7 = pokemon_names[index+ 6]
     pokemon_id_7 = fetch_pokemon_id(pokemon_name_7)
     poke_sprite_7 = fetch_pokemon_sprite(pokemon_id_7)
-    btn_pokedex_pokemon_2_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_7), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_7, type, index))
+    btn_pokedex_pokemon_2_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_7), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_7))
     btn_pokedex_pokemon_2_2.place(x = 260,y = 260)
 
     #button 8
     pokemon_name_8 = pokemon_names[index+ 7]
     pokemon_id_8 = fetch_pokemon_id(pokemon_name_8)
     poke_sprite_8 = fetch_pokemon_sprite(pokemon_id_8)
-    btn_pokedex_pokemon_2_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_8), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_8, type, index))
+    btn_pokedex_pokemon_2_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_8), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_8))
     btn_pokedex_pokemon_2_3.place(x = 390,y = 260)
 
     #button 9
     pokemon_name_9 = pokemon_names[index+ 8]
     pokemon_id_9 = fetch_pokemon_id(pokemon_name_9)
     poke_sprite_9 = fetch_pokemon_sprite(pokemon_id_9)
-    btn_pokedex_pokemon_2_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_9), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_9, type, index))
+    btn_pokedex_pokemon_2_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_9), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_9))
     btn_pokedex_pokemon_2_4.place(x = 520,y = 260)
 
     #button 10
     pokemon_name_10 = pokemon_names[index+ 9]
     pokemon_id_10 = fetch_pokemon_id(pokemon_name_10)
     poke_sprite_10 = fetch_pokemon_sprite(pokemon_id_10)
-    btn_pokedex_pokemon_2_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_10), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_10, type, index))
+    btn_pokedex_pokemon_2_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_10), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_10))
     btn_pokedex_pokemon_2_5.place(x = 650,y = 260)
 
 
@@ -674,35 +672,35 @@ def pokedex_menu_sub(type, index):
     pokemon_name_11 = pokemon_names[index+ 10]
     pokemon_id_11 = fetch_pokemon_id(pokemon_name_11)
     poke_sprite_11 = fetch_pokemon_sprite(pokemon_id_11)
-    btn_pokedex_pokemon_3_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_11), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_11, type, index))
+    btn_pokedex_pokemon_3_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_11), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_11))
     btn_pokedex_pokemon_3_1.place(x = 130,y = 390)
 
     ##button 12
     pokemon_name_12 = pokemon_names[index+ 11]
     pokemon_id_12 = fetch_pokemon_id(pokemon_name_12)
     poke_sprite_12 = fetch_pokemon_sprite(pokemon_id_12)
-    btn_pokedex_pokemon_3_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_12), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_12, type, index))
+    btn_pokedex_pokemon_3_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_12), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_12))
     btn_pokedex_pokemon_3_2.place(x = 260,y = 390)
 
     #button 13
     pokemon_name_13 = pokemon_names[index+ 12]
     pokemon_id_13 = fetch_pokemon_id(pokemon_name_13)
     poke_sprite_13 = fetch_pokemon_sprite(pokemon_id_13)
-    btn_pokedex_pokemon_3_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_13), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_13, type, index))
+    btn_pokedex_pokemon_3_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_13), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_13))
     btn_pokedex_pokemon_3_3.place(x = 390,y = 390)
 
     #button 14
     pokemon_name_14 = pokemon_names[index+ 13]
     pokemon_id_14 = fetch_pokemon_id(pokemon_name_14)
     poke_sprite_14 = fetch_pokemon_sprite(pokemon_id_14)
-    btn_pokedex_pokemon_3_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_14), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_14, type, index))
+    btn_pokedex_pokemon_3_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_14), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_14))
     btn_pokedex_pokemon_3_4.place(x =520 ,y = 390)
 
     #button 15
     pokemon_name_15 = pokemon_names[index+ 14]
     pokemon_id_15 = fetch_pokemon_id(pokemon_name_15)
     poke_sprite_15 = fetch_pokemon_sprite(pokemon_id_15)
-    btn_pokedex_pokemon_3_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_15), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_15, type, index))
+    btn_pokedex_pokemon_3_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_15), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_15))
     btn_pokedex_pokemon_3_5.place(x = 650,y = 390)
 
 
@@ -710,14 +708,14 @@ def pokedex_menu_sub(type, index):
     pokemon_name_16 = pokemon_names[index+ 15]
     pokemon_id_16 = fetch_pokemon_id(pokemon_name_16)
     poke_sprite_16 = fetch_pokemon_sprite(pokemon_id_16)
-    btn_pokedex_pokemon_4_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_16), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_16, type, index))
+    btn_pokedex_pokemon_4_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_16), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_16))
     btn_pokedex_pokemon_4_1.place(x = 130,y = 520)
 
     ##button 17
     pokemon_name_17 = pokemon_names[index+ 16]
     pokemon_id_17 = fetch_pokemon_id(pokemon_name_17)
     poke_sprite_17 = fetch_pokemon_sprite(pokemon_id_17)
-    btn_pokedex_pokemon_4_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_17), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_17, type, index))
+    btn_pokedex_pokemon_4_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_17), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_17))
     btn_pokedex_pokemon_4_2.place(x = 260,y = 520)
 
 
@@ -726,21 +724,21 @@ def pokedex_menu_sub(type, index):
     pokemon_name_18 = pokemon_names[index+ 17]
     pokemon_id_18 = fetch_pokemon_id(pokemon_name_18)
     poke_sprite_18 = fetch_pokemon_sprite(pokemon_id_18)
-    btn_pokedex_pokemon_4_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_18), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_18, type, index))
+    btn_pokedex_pokemon_4_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_18), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_18))
     btn_pokedex_pokemon_4_3.place(x = 390,y = 520)
 
     #button 19
     pokemon_name_19 = pokemon_names[index+ 18]
     pokemon_id_19 = fetch_pokemon_id(pokemon_name_19)
     poke_sprite_19 = fetch_pokemon_sprite(pokemon_id_19)
-    btn_pokedex_pokemon_4_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_19), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_19, type, index))
+    btn_pokedex_pokemon_4_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_19), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_19))
     btn_pokedex_pokemon_4_4.place(x =520,y = 520)
 
     #button 20
     pokemon_name_20 = pokemon_names[index+ 19]
     pokemon_id_20 = fetch_pokemon_id(pokemon_name_20)
     poke_sprite_20 = fetch_pokemon_sprite(pokemon_id_20)
-    btn_pokedex_pokemon_4_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_20), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_20, type, index))
+    btn_pokedex_pokemon_4_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_20), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_20))
     btn_pokedex_pokemon_4_5.place(x = 650,y = 520)
 
 
@@ -748,35 +746,35 @@ def pokedex_menu_sub(type, index):
     pokemon_name_21 = pokemon_names[index+ 20]
     pokemon_id_21 = fetch_pokemon_id(pokemon_name_21)
     poke_sprite_21 = fetch_pokemon_sprite(pokemon_id_21)
-    btn_pokedex_pokemon_5_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_21), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_21, type, index))
+    btn_pokedex_pokemon_5_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_21), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_21))
     btn_pokedex_pokemon_5_1.place(x = 130,y = 650)
 
     ##button 22
     pokemon_name_22 = pokemon_names[index+ 21]
     pokemon_id_22 = fetch_pokemon_id(pokemon_name_22)
     poke_sprite_22 = fetch_pokemon_sprite(pokemon_id_22)
-    btn_pokedex_pokemon_5_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_22), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_22, type, index))
+    btn_pokedex_pokemon_5_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_22), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_22))
     btn_pokedex_pokemon_5_2.place(x = 260,y = 650)
 
     #button 23
     pokemon_name_23 = pokemon_names[index+ 22]
     pokemon_id_23 = fetch_pokemon_id(pokemon_name_23)
     poke_sprite_23 = fetch_pokemon_sprite(pokemon_id_23)
-    btn_pokedex_pokemon_5_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_23), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_23, type, index))
+    btn_pokedex_pokemon_5_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_23), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_23))
     btn_pokedex_pokemon_5_3.place(x = 390,y = 650)
 
     #button 24
     pokemon_name_24 = pokemon_names[index+ 23]
     pokemon_id_24 = fetch_pokemon_id(pokemon_name_24)
     poke_sprite_24 = fetch_pokemon_sprite(pokemon_id_24)
-    btn_pokedex_pokemon_5_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_24), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_24, type, index))
+    btn_pokedex_pokemon_5_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_24), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_24))
     btn_pokedex_pokemon_5_4.place(x =520,y = 650)
 
     #button 25
     pokemon_name_25 = pokemon_names[index+ 24]
     pokemon_id_25 = fetch_pokemon_id(pokemon_name_25)
     poke_sprite_25 = fetch_pokemon_sprite(pokemon_id_25)
-    btn_pokedex_pokemon_5_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_25), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_25, type, index))
+    btn_pokedex_pokemon_5_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_25), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_25))
     btn_pokedex_pokemon_5_5.place(x = 650,y = 650)
 
 
