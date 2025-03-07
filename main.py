@@ -471,6 +471,7 @@ def on_poke_click(pokemon_id):
 def filter_type_sub():
     window_type_select = tk.Toplevel(window)
     window_type_select.geometry('500x500')
+    window_type_select.pack()
 
     lbl_instruct = tk.Label(window_type_select, text="Select a type for your filter enter [any] to remove a filter", fg="black")
     lbl_instruct.place(x= 5, y=5)
@@ -564,10 +565,11 @@ def pokedex_menu_sub(type, index):
     profile = tk.Button(frm_pokedex_menu, text=('profile'), fg='black',height=6, width=12,  command=lambda: [frm_pokedex_menu.pack_forget(),  frm_profile_menu.pack()])
     profile.place(x=785,y=5)
     #filter button
-    btn_filter = tk.Button(frm_pokedex_menu, text = "Filter pokemon", fg= "black", height=6, width=12, command=lambda:[filter_type_sub] )
-    btn_filter.place(x= 395, y=5)
+    btn_filter = tk.Button(frm_pokedex_menu, text = "Filter pokemon", fg= "black", height=6, width=12, command=filter_type_sub )
+    btn_filter.place(x= 400, y=5)
     #refresh button
-    btn_refresh = tk.Button(frm_pokedex_menu, text)
+    btn_refresh = tk.Button(frm_pokedex_menu, text =  "refresh page",fg= "black", height=6, width=12, command=lambda: [frm_pokedex_menu.pack_forget(), pokedex_menu_sub(type, index)])
+    btn_refresh.place(x= 400, y = 785)
 
 
 
