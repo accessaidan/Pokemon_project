@@ -271,7 +271,7 @@ def check_pokemon_sub():
         inputted_pokemon_window.geometry('240x240')
         inputted_pokemon_window.title(poke_name.capitalize())
 
-        btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+        btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120, command=lambda: specific_pokemon_sub(pokemon_id))
         btn_poke.image = poke_sprite
         btn_poke.place(x= 60, y=0)
         flag = False
@@ -288,7 +288,7 @@ def check_pokemon_sub():
             inputted_pokemon_window.title(pokemon.capitalize())
             
 
-            btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+            btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120, command=lambda: specific_pokemon_sub(pokemon_id))
             btn_poke.image = poke_sprite
             btn_poke.place(x= 60, y=0)
             flag = False
@@ -451,7 +451,7 @@ def on_poke_click(pokemon_id):
     inputted_pokemon_window.geometry('240x240')
     inputted_pokemon_window.title(poke_name)
 
-    btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120)
+    btn_poke = tk.Button(inputted_pokemon_window, image=(poke_sprite), fg="black",height=120,width=120, command=lambda: specific_pokemon_sub(pokemon_id))
     btn_poke.image = poke_sprite
     btn_poke.place(x= 60, y=0)
 
@@ -855,6 +855,55 @@ def pokedex_menu_sub(type, index):
         btn_pokedex_pokemon_5_5.place(x = 650,y = 650)
     except:
         print(1)
+
+
+# subroutine to show info on specific pokemon
+
+def specific_pokemon_sub(pokemon_id):
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}"
+    response = requests.get(url)
+    poke_data = response.json()
+    sprite = fetch_pokemon_sprite(pokemon_id)
+    name = poke_data['name']
+    height = poke_data['height']
+    weight = poke_data['weight']
+    abilities = [ability['ability']['name'] for ability in poke_data['abilities']]
+    types = [type['type']['name'] for type in poke_data['types']]
+    health = [health['health'] for health in poke_data['stats']]
+    attack = [attack['attack'] for attack in poke_data['stats']]
+    defense = [defense['defense'] for defense in poke_data['stats']]
+    special_attack = [special_attack['special-attack'] for special_attack in poke_data['stats']]
+    special_defense = [special_defense['special-defense'] for special_defense in poke_data['stats']]
+    speed = [speed['speed'] for speed in poke_data['stats']]
+
+
+
+
+    specific_pokemon_window = tk.Toplevel()
+    specific_pokemon_window.title(name.capitalize())
+    img_label = tk.Label(specific_pokemon_window, image=sprite)
+    img_label.pack()
+    lbl_name = tk.Label(specific_pokemon_window, text=(name), font=("Press Start 2P", 12))
+    lbl_name.pack()
+    lbl_height = tk.Label(specific_pokemon_window, text=(str(height) +"0 cm"), font=("Press Start 2P", 12))
+    lbl_height.pack()
+    lbl_weight = tk.Label(specific_pokemon_window, text=(weight/10, "KG"), font=("Press Start 2P", 12))
+    lbl_weight.pack()
+    lbl_abilities = tk.Label(specific_pokemon_window, text=f"Abilities: {', '.join(abilities)}", font=("Press Start 2P", 12))
+    lbl_abilities.pack()
+    lbl_types = tk.Label(specific_pokemon_window, text=f"Types: {', '.join(types)}", font=("Press Start 2P", 12))
+    lbl_types.pack()
+    lbl_health = tk.Label(specific_pokemon_window, text=f"Health: {', '.join(str(i) for i in health)}", font=("Press Start 2P", 12))
+    lbl_health.pack()
+    lbl_attack = tk.Label(specific_pokemon_window, text=("Attack:", attack), font=("Press Start 2P", 12))
+    lbl_attack.pack()
+    lbl_defense = tk.Label(specific_pokemon_window, text=("Defense:", defense ), font=("Press Start 2P", 12))
+    lbl_defense.pack()
+    lbl_special_attack = tk.Label(specific_pokemon_window, text=("Sp.Atk", special_attack), font=("Press Start 2P", 12))
+    lbl_special_attack.pack()
+    lbl_special_defense = tk.Label(specific_pokemon_window, text=("Sp.Def:", special_defense), font=("Press Start 2P", 12))
+    lbl_special_defense.pack()
+    lbl_speed = tk.Label(specific_pokemon_window, text=("Speed:", speed), font=("Press Start 2P", 12))
 
 
 
