@@ -21,10 +21,14 @@ def reg_button_press():
     frm_reg_or_log.pack_forget()
     frm_login.pack_forget()
     frm_register.pack()
+
+
 ##login button pressed in register
 def log_in_reg_sub():
     frm_register.pack_forget()
     frm_login.pack()
+
+
 ##register submit button pressed
 def check_new_user():
     global username
@@ -79,10 +83,14 @@ def login_button_press():
     frm_reg_or_log.pack_forget()
     frm_register.pack_forget()
     frm_login.pack()
+
+
 #register button pressed in login
 def reg_button_in_login_pressed():
     frm_login.pack_forget()
     frm_register.pack()
+
+
 #login submitt button pressed
 def check_user_pass():
     global username
@@ -100,7 +108,7 @@ def check_user_pass():
 
         usernames = user_data["username"].values
         if username_input in usernames:
-            if password_input in user_data["password"].values: ########################### Does not fucking work
+            if password_input == user_data.loc[user_data["username"] == username_input, "password"].values[0]:
                 login_success = tk.Toplevel(window)
                 login_success.title("SUCCESS")
                 login_success.geometry('250x50')
@@ -121,6 +129,7 @@ def check_user_pass():
             lbl_wrong_username = tk.Label(wrong_username, text="That username does not exist", foreground='black').pack()
             lbl_can_close = tk.Label(wrong_username, text="You may now close this window and try again", foreground='black').pack()
 
+
 #main menu subroutine 
 def main_menu_sub():
     global username
@@ -128,10 +137,13 @@ def main_menu_sub():
     frm_register.pack_forget()
     frm_main_menu.pack()
 
+
 # subroutine for logging out
 def log_out_sub():
     frm_profile_menu.pack_forget()
     frm_reg_or_log.pack()
+
+
 #subroutine for checking deleting account
 def delete_account_sub():
     delete_account_confirm = tk.Toplevel(window)
@@ -139,6 +151,8 @@ def delete_account_sub():
     delete_account_confirm.geometry('250x50')
     lbl_must_input = tk.Label(delete_account_confirm, text="Are you SURE you want to DELETE your account", foreground='black').pack()
     btn_can_close = tk.Button(delete_account_confirm, text="DELETE ACCOUNT", foreground='black', command= delete_account_function_sub).pack()
+
+
 #subroutine to actually delete account
 def delete_account_function_sub():
     global username
@@ -147,9 +161,6 @@ def delete_account_function_sub():
     user_data.to_csv('user_data.csv', index=False)
     frm_profile_menu.pack_forget()
     frm_reg_or_log.pack()
-
-
-##Buttons for functions in main menu
 
 
 #subroutie for seeing teams from the anime
@@ -192,9 +203,6 @@ def show_team_sub(character):
     show_team_window.geometry('910x910')
     show_team_window.title(character_name + "'s Team")
     
-    
-
-
     #pokemon 1
     poke_sprite = fetch_pokemon_sprite(poke1)
     poke_name = fetch_pokemon_name(poke1)
@@ -204,7 +212,6 @@ def show_team_sub(character):
     btn_poke1.place(x= 135, y=265)
     lbl_poke1 = tk.Label(show_team_window, text=poke_name, fg="black", font=("Press Start 2P", 12)).place(x= 135, y=395)
     
-
     #pokemon 2
     poke_sprite = fetch_pokemon_sprite(poke2)
     poke_name = fetch_pokemon_name(poke2)
@@ -256,11 +263,10 @@ def team_builder_sub():
     frm_main_menu.pack_forget()
     frm_make_team.pack()
 
+
 #subroutine to see if inputted pokemon exists 
 def check_pokemon_sub():
     pokemon = txt_make_team.get()
-
-
 
     try: 
         pokemon_id = pokemon
@@ -277,7 +283,6 @@ def check_pokemon_sub():
         flag = False
         #add_to_team(pokemon_id, inputted_pokemon_window)
     
-
     except:
         try:
             pokemon_id = fetch_pokemon_id(pokemon.lower())
@@ -312,7 +317,6 @@ def check_pokemon_sub():
         btn_not_add_to_team.place(x= 130, y=125)
 
 
-
 #subroutine to select which pokemon to revove from team
 def select_remove_pokemon_sub(pokemon_id):
     select_pokemon_remove_window = tk.Toplevel(window)
@@ -320,7 +324,6 @@ def select_remove_pokemon_sub(pokemon_id):
 
     global username
     user_data = pd.read_csv('user_data.csv')
-
 
     poke1 = user_data.loc[user_data['username'] == username, 'poke1'].values[0]
     poke2 = user_data.loc[user_data['username'] == username, 'poke2'].values[0]
@@ -380,19 +383,21 @@ def select_remove_pokemon_sub(pokemon_id):
     lbl_instruct = tk.Label(select_pokemon_remove_window, text="Select which Pokemon to remove from your team:", fg="black")
     lbl_instruct.place(x= 335, y=5)
 
+
 #subroutine to replace pokemon
 def replace_pokemon(pokemon_id, placement, select_pokemon_remove_window):
     global username
     user_data = pd.read_csv('user_data.csv')
     user_data.loc[user_data['username'] == username, placement] = str(pokemon_id)
     
-    user_data.to_csv('user_data.csv')
+    user_data.to_csv('user_data.csv', index = False)
     #popup to say it has been replaced
     replaced_pokemon_window = tk.Toplevel(window)
     replaced_pokemon_window.geometry('250x50')
     btn_replaced_pokemon = tk.Label(replaced_pokemon_window, text="Replaced", fg="black")
     btn_replaced_pokemon.place(x= 30, y=0)
     select_pokemon_remove_window.destroy()
+
 
 #subroutine where pokemon sprite is fetched
 def fetch_pokemon_sprite(pokemon_id):
@@ -402,9 +407,9 @@ def fetch_pokemon_sprite(pokemon_id):
     poke_sprite = Image.open(io.BytesIO(poke_image_data))
     poke_sprite = ImageTk.PhotoImage(poke_sprite)
 
-    
-
     return poke_sprite
+
+
 #subroutine to get the pokemon id from its name
 def fetch_pokemon_id(pokemon):
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
@@ -414,6 +419,7 @@ def fetch_pokemon_id(pokemon):
     
     return pokemon_id
 
+
 # subroutine to get pokemons name
 def fetch_pokemon_name(pokemon_id):
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}"
@@ -422,6 +428,8 @@ def fetch_pokemon_name(pokemon_id):
     pokemon_name = pokemon_data['name']
     
     return pokemon_name
+
+
 # subroutine to remove any filter from pokedex
 def any_pokemon(url):
     response = requests.get(url)
@@ -431,6 +439,7 @@ def any_pokemon(url):
         pokemon_names.append(pokemon["name"])
     return pokemon_names
 
+
 #subroutine to display the filtered pokedex
 def filtered_pokemon(url):
     response = requests.get(url)
@@ -439,8 +448,6 @@ def filtered_pokemon(url):
     for pokemon in pokemon_data["pokemon"]:
         pokemon_names.append(pokemon["pokemon"]["name"])
     return pokemon_names
-
-
 
 
 #subrotuien for button when pokemon click
@@ -462,9 +469,6 @@ def on_poke_click(pokemon_id):
     btn_not_add_to_team = tk.Button(inputted_pokemon_window, text="dont add to team", fg="black",background="red", height=6, width=12,
     command= lambda: inputted_pokemon_window.destroy())
     btn_not_add_to_team.place(x= 130, y=125)
-
-
-
 
 
 #subrtoutine to filter the pokedex
@@ -551,9 +555,6 @@ def find_type(window_type_select, txt_type_filter):
         filter_type_sub()
 
 
-
-
-
 #subroutine for pokedex
 def pokedex_menu_sub(type, index):
 
@@ -563,8 +564,6 @@ def pokedex_menu_sub(type, index):
     frm_pokedex_menu = tk.Frame(window, width=910, height=910, name='pokedex_menu')
     frm_pokedex_menu.pack()
 
-    
-    
     #Back to menu button
     back = tk.Button(frm_pokedex_menu, text="Back to menu", fg="Black",height=6,width=12,  command=lambda: [frm_pokedex_menu.pack_forget(), frm_main_menu.pack()])
     back.place(x= 5, y=5 )
@@ -578,8 +577,6 @@ def pokedex_menu_sub(type, index):
     #refresh button
     btn_refresh = tk.Button(frm_pokedex_menu, text =  "refresh page",fg= "black", height=6, width=12, command=lambda: [frm_pokedex_menu.pack_forget(), pokedex_menu_sub(type, index)])
     btn_refresh.place(x= 535, y = 5)
-
-
 
     if type == "any":
         url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1025"
@@ -598,9 +595,6 @@ def pokedex_menu_sub(type, index):
         # buton to see next 25
         btn_next_page = tk.Button(frm_pokedex_menu, text = "Next 25", fg= "black", height=6, width=12, command= lambda: [frm_pokedex_menu.pack_forget(), pokedex_menu_sub(type,index + 25)])
         btn_next_page.place(x= 788, y= 395)
-
-
-
 
         # button 1
     try: # tries to stop error if run out of pokemon
@@ -701,7 +695,6 @@ def pokedex_menu_sub(type, index):
     except:
         print(1)
 
-
         #button 11
     try:
         pokemon_name_11 = pokemon_names[index+ 10]
@@ -752,7 +745,6 @@ def pokedex_menu_sub(type, index):
     except:
         print(1)
 
-
         #button 16
     try:
         pokemon_name_16 = pokemon_names[index+ 15]
@@ -772,8 +764,6 @@ def pokedex_menu_sub(type, index):
         btn_pokedex_pokemon_4_2.place(x = 260,y = 520)
     except:
         print(1)
-
-
 
         #button 18
     try:
@@ -877,9 +867,6 @@ def specific_pokemon_sub(pokemon_id):
     speed = poke_data['stats'][5]['base_stat']
 
 
-
-
-
     specific_pokemon_window = tk.Toplevel()
     specific_pokemon_window.title(name.capitalize())
     img_label = tk.Label(specific_pokemon_window, image=sprite)
@@ -906,11 +893,6 @@ def specific_pokemon_sub(pokemon_id):
     lbl_special_defense.pack()
     lbl_speed = tk.Label(specific_pokemon_window, text=("Speed:", speed), font=("Press Start 2P", 12))
     lbl_speed.pack()
-
-
-
-
-
 
 
 
@@ -1045,10 +1027,6 @@ btn_brock.place(x= 395, y=135)
 
 
 
-
-
-
-
 ##Make a team ##########################################
 frm_make_team = tk.Frame(window, width=910, height=910)
 
@@ -1069,9 +1047,6 @@ txt_make_team.place(x= 365, y=395)
 #submitt pokemon
 btn_submit_pokemon = tk.Button(frm_make_team, text='submit', fg='black', height=5,width=12, command=check_pokemon_sub)
 btn_submit_pokemon.place(x=395, y=525)
-
-
-
 
 
 frm_reg_or_log.pack()
