@@ -1,3 +1,5 @@
+it only works in debug mode, so please be kind and test it using that
+
 you must install the font used, do this at link
 https://fonts.google.com/specimen/Press+Start+2P
 download the file from the link, open the zip file and open the 

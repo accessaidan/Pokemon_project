@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-,Unnamed: 0.7,Unnamed: 0.6,Unnamed: 0.5,Unnamed: 0.4,Unnamed: 0.3,Unnamed: 0.2,Unnamed: 0.1,Unnamed: 0,username,password,poke1,poke2,poke3,poke4,poke5,poke6
-0,0,0,0,0,0,0,0,0,aidan,Aidan.2305,234,6,1005,87,853,456
-1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
-2,2,2,2,2,2,2,2,2,a,a,679,679,1,6,25,584
-=======
-username,password,poke1,poke2,poke3,poke4,poke5,poke6
-aidan,Aidan.2305,234,6,1005,87,853,456
-1,1,0,0,0,0,0,0
-a,a,679,234,1,6,25,10196
->>>>>>> b6cd7d80c5db0999652e7e052ccb760537a68768
+,username,password,poke1,poke2,poke3,poke4,poke5,poke6
+0,aidan,Aidan.2305,234,6,1005,87,853,456
+1,1,1,0,0,0,0,0,0
+2,a,a,643,234,1,6,25,10196

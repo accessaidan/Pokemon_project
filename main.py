@@ -577,7 +577,7 @@ def pokedex_menu_sub(type, index):
     btn_filter.place(x= 400, y=5)
     #refresh button
     btn_refresh = tk.Button(frm_pokedex_menu, text =  "refresh page",fg= "black", height=6, width=12, command=lambda: [frm_pokedex_menu.pack_forget(), pokedex_menu_sub(type, index)])
-    btn_refresh.place(x= 400, y = 785)
+    btn_refresh.place(x= 535, y = 5)
 
 
 
@@ -607,7 +607,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_1 = pokemon_names[index] 
         pokemon_id_1 = fetch_pokemon_id(pokemon_name_1)
         poke_sprite_1 = fetch_pokemon_sprite(pokemon_id_1)
-        btn_pokedex_pokemon_1_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_1), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_1)])
+        btn_pokedex_pokemon_1_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_1), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_1), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_1_1.place(x = 130,y = 130)
     except:
         print(1)
@@ -616,7 +616,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_2 = pokemon_names[index+ 1]
         pokemon_id_2 = fetch_pokemon_id(pokemon_name_2)
         poke_sprite_2 = fetch_pokemon_sprite(pokemon_id_2)
-        btn_pokedex_pokemon_1_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_2), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_2))
+        btn_pokedex_pokemon_1_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_2), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_2), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_1_2.place(x = 260,y = 130)
     except:
         print(1)
@@ -626,7 +626,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_3 = pokemon_names[index+ 2]
         pokemon_id_3 = fetch_pokemon_id(pokemon_name_3)
         poke_sprite_3 = fetch_pokemon_sprite(pokemon_id_3)
-        btn_pokedex_pokemon_1_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_3), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_3,))
+        btn_pokedex_pokemon_1_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_3), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_3), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_1_3.place(x = 390,y = 130)
     except:
         print(1)
@@ -636,7 +636,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_4 = pokemon_names[index+ 3]
         pokemon_id_4 = fetch_pokemon_id(pokemon_name_4)
         poke_sprite_4 = fetch_pokemon_sprite(pokemon_id_4)
-        btn_pokedex_pokemon_1_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_4), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_4,))
+        btn_pokedex_pokemon_1_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_4), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_4), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_1_4.place(x = 520,y = 130)
     except:
         print(1)
@@ -646,7 +646,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_5 = pokemon_names[index+ 4]
         pokemon_id_5 = fetch_pokemon_id(pokemon_name_5)
         poke_sprite_5 = fetch_pokemon_sprite(pokemon_id_5)
-        btn_pokedex_pokemon_1_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_5), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_5))
+        btn_pokedex_pokemon_1_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_5), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_5), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_1_5.place(x = 650,y = 130)
     except:
         print(1)
@@ -656,7 +656,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_6 = pokemon_names[index+ 5]
         pokemon_id_6 = fetch_pokemon_id(pokemon_name_6)
         poke_sprite_6 = fetch_pokemon_sprite(pokemon_id_6)
-        btn_pokedex_pokemon_2_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_6), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_6))
+        btn_pokedex_pokemon_2_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_6), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_6), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_2_1.place(x = 130,y = 260)
     except:
         print(1)
@@ -666,7 +666,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_7 = pokemon_names[index+ 6]
         pokemon_id_7 = fetch_pokemon_id(pokemon_name_7)
         poke_sprite_7 = fetch_pokemon_sprite(pokemon_id_7)
-        btn_pokedex_pokemon_2_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_7), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_7))
+        btn_pokedex_pokemon_2_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_7), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_7), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_2_2.place(x = 260,y = 260)
     except:
         print(1)
@@ -676,7 +676,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_8 = pokemon_names[index+ 7]
         pokemon_id_8 = fetch_pokemon_id(pokemon_name_8)
         poke_sprite_8 = fetch_pokemon_sprite(pokemon_id_8)
-        btn_pokedex_pokemon_2_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_8), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_8))
+        btn_pokedex_pokemon_2_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_8), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_8), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_2_3.place(x = 390,y = 260)
     except:
         print(1)
@@ -686,7 +686,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_9 = pokemon_names[index+ 8]
         pokemon_id_9 = fetch_pokemon_id(pokemon_name_9)
         poke_sprite_9 = fetch_pokemon_sprite(pokemon_id_9)
-        btn_pokedex_pokemon_2_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_9), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_9))
+        btn_pokedex_pokemon_2_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_9), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_9), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_2_4.place(x = 520,y = 260)
     except:
         print(1)
@@ -696,7 +696,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_10 = pokemon_names[index+ 9]
         pokemon_id_10 = fetch_pokemon_id(pokemon_name_10)
         poke_sprite_10 = fetch_pokemon_sprite(pokemon_id_10)
-        btn_pokedex_pokemon_2_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_10), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_10))
+        btn_pokedex_pokemon_2_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_10), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_10), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_2_5.place(x = 650,y = 260)
     except:
         print(1)
@@ -707,7 +707,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_11 = pokemon_names[index+ 10]
         pokemon_id_11 = fetch_pokemon_id(pokemon_name_11)
         poke_sprite_11 = fetch_pokemon_sprite(pokemon_id_11)
-        btn_pokedex_pokemon_3_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_11), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_11))
+        btn_pokedex_pokemon_3_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_11), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_11), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_3_1.place(x = 130,y = 390)
     except:
         print(1)
@@ -717,7 +717,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_12 = pokemon_names[index+ 11]
         pokemon_id_12 = fetch_pokemon_id(pokemon_name_12)
         poke_sprite_12 = fetch_pokemon_sprite(pokemon_id_12)
-        btn_pokedex_pokemon_3_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_12), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_12))
+        btn_pokedex_pokemon_3_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_12), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_12), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_3_2.place(x = 260,y = 390)
     except:
         print(1)
@@ -727,7 +727,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_13 = pokemon_names[index+ 12]
         pokemon_id_13 = fetch_pokemon_id(pokemon_name_13)
         poke_sprite_13 = fetch_pokemon_sprite(pokemon_id_13)
-        btn_pokedex_pokemon_3_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_13), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_13))
+        btn_pokedex_pokemon_3_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_13), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_13), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_3_3.place(x = 390,y = 390)
     except:
         print(1)
@@ -737,7 +737,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_14 = pokemon_names[index+ 13]
         pokemon_id_14 = fetch_pokemon_id(pokemon_name_14)
         poke_sprite_14 = fetch_pokemon_sprite(pokemon_id_14)
-        btn_pokedex_pokemon_3_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_14), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_14))
+        btn_pokedex_pokemon_3_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_14), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_14), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_3_4.place(x =520 ,y = 390)
     except:
         print(1)
@@ -747,7 +747,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_15 = pokemon_names[index+ 14]
         pokemon_id_15 = fetch_pokemon_id(pokemon_name_15)
         poke_sprite_15 = fetch_pokemon_sprite(pokemon_id_15)
-        btn_pokedex_pokemon_3_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_15), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_15))
+        btn_pokedex_pokemon_3_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_15), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_15), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_3_5.place(x = 650,y = 390)
     except:
         print(1)
@@ -758,7 +758,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_16 = pokemon_names[index+ 15]
         pokemon_id_16 = fetch_pokemon_id(pokemon_name_16)
         poke_sprite_16 = fetch_pokemon_sprite(pokemon_id_16)
-        btn_pokedex_pokemon_4_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_16), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_16))
+        btn_pokedex_pokemon_4_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_16), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_16), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_4_1.place(x = 130,y = 520)
     except:
         print(1)
@@ -768,7 +768,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_17 = pokemon_names[index+ 16]
         pokemon_id_17 = fetch_pokemon_id(pokemon_name_17)
         poke_sprite_17 = fetch_pokemon_sprite(pokemon_id_17)
-        btn_pokedex_pokemon_4_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_17), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_17))
+        btn_pokedex_pokemon_4_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_17), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_17), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_4_2.place(x = 260,y = 520)
     except:
         print(1)
@@ -780,7 +780,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_18 = pokemon_names[index+ 17]
         pokemon_id_18 = fetch_pokemon_id(pokemon_name_18)
         poke_sprite_18 = fetch_pokemon_sprite(pokemon_id_18)
-        btn_pokedex_pokemon_4_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_18), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_18))
+        btn_pokedex_pokemon_4_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_18), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_18), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_4_3.place(x = 390,y = 520)
     except:
         print(1)
@@ -790,7 +790,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_19 = pokemon_names[index+ 18]
         pokemon_id_19 = fetch_pokemon_id(pokemon_name_19)
         poke_sprite_19 = fetch_pokemon_sprite(pokemon_id_19)
-        btn_pokedex_pokemon_4_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_19), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_19))
+        btn_pokedex_pokemon_4_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_19), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_19), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_4_4.place(x =520,y = 520)
     except:
         print(1)
@@ -800,7 +800,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_20 = pokemon_names[index+ 19]
         pokemon_id_20 = fetch_pokemon_id(pokemon_name_20)
         poke_sprite_20 = fetch_pokemon_sprite(pokemon_id_20)
-        btn_pokedex_pokemon_4_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_20), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_20))
+        btn_pokedex_pokemon_4_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_20), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_20), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_4_5.place(x = 650,y = 520)
     except:
         print(1)
@@ -811,7 +811,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_21 = pokemon_names[index+ 20]
         pokemon_id_21 = fetch_pokemon_id(pokemon_name_21)
         poke_sprite_21 = fetch_pokemon_sprite(pokemon_id_21)
-        btn_pokedex_pokemon_5_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_21), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_21))
+        btn_pokedex_pokemon_5_1 = tk.Button(frm_pokedex_menu, image=(poke_sprite_21), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_21), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_5_1.place(x = 130,y = 650)
     except:
         print(1)
@@ -821,7 +821,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_22 = pokemon_names[index+ 21]
         pokemon_id_22 = fetch_pokemon_id(pokemon_name_22)
         poke_sprite_22 = fetch_pokemon_sprite(pokemon_id_22)
-        btn_pokedex_pokemon_5_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_22), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_22))
+        btn_pokedex_pokemon_5_2 = tk.Button(frm_pokedex_menu, image=(poke_sprite_22), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_22), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_5_2.place(x = 260,y = 650)
     except:
         print(1)
@@ -831,7 +831,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_23 = pokemon_names[index+ 22]
         pokemon_id_23 = fetch_pokemon_id(pokemon_name_23)
         poke_sprite_23 = fetch_pokemon_sprite(pokemon_id_23)
-        btn_pokedex_pokemon_5_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_23), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_23))
+        btn_pokedex_pokemon_5_3 = tk.Button(frm_pokedex_menu, image=(poke_sprite_23), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_23), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_5_3.place(x = 390,y = 650)
     except:
         print(1)
@@ -841,7 +841,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_24 = pokemon_names[index+ 23]
         pokemon_id_24 = fetch_pokemon_id(pokemon_name_24)
         poke_sprite_24 = fetch_pokemon_sprite(pokemon_id_24)
-        btn_pokedex_pokemon_5_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_24), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_24))
+        btn_pokedex_pokemon_5_4 = tk.Button(frm_pokedex_menu, image=(poke_sprite_24), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_24), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_5_4.place(x =520,y = 650)
     except:
         print(1)
@@ -851,7 +851,7 @@ def pokedex_menu_sub(type, index):
         pokemon_name_25 = pokemon_names[index+ 24]
         pokemon_id_25 = fetch_pokemon_id(pokemon_name_25)
         poke_sprite_25 = fetch_pokemon_sprite(pokemon_id_25)
-        btn_pokedex_pokemon_5_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_25), fg="black",height=120,width=120, command=lambda: on_poke_click(pokemon_id_25))
+        btn_pokedex_pokemon_5_5 = tk.Button(frm_pokedex_menu, image=(poke_sprite_25), fg="black",height=120,width=120, command=lambda: [frm_pokedex_menu.pack_forget(), on_poke_click(pokemon_id_25), pokedex_menu_sub(type, index)])
         btn_pokedex_pokemon_5_5.place(x = 650,y = 650)
     except:
         print(1)
@@ -869,12 +869,13 @@ def specific_pokemon_sub(pokemon_id):
     weight = poke_data['weight']
     abilities = [ability['ability']['name'] for ability in poke_data['abilities']]
     types = [type['type']['name'] for type in poke_data['types']]
-    health = [health['health'] for health in poke_data['stats']]
-    attack = [attack['attack'] for attack in poke_data['stats']]
-    defense = [defense['defense'] for defense in poke_data['stats']]
-    special_attack = [special_attack['special-attack'] for special_attack in poke_data['stats']]
-    special_defense = [special_defense['special-defense'] for special_defense in poke_data['stats']]
-    speed = [speed['speed'] for speed in poke_data['stats']]
+    health = poke_data['stats'][0]['base_stat']
+    attack = poke_data['stats'][1]['base_stat']
+    defense = poke_data['stats'][2]['base_stat']
+    special_attack = poke_data['stats'][3]['base_stat']
+    special_defense = poke_data['stats'][4]['base_stat']
+    speed = poke_data['stats'][5]['base_stat']
+
 
 
 
@@ -893,17 +894,19 @@ def specific_pokemon_sub(pokemon_id):
     lbl_abilities.pack()
     lbl_types = tk.Label(specific_pokemon_window, text=f"Types: {', '.join(types)}", font=("Press Start 2P", 12))
     lbl_types.pack()
-    lbl_health = tk.Label(specific_pokemon_window, text=f"Health: {', '.join(str(i) for i in health)}", font=("Press Start 2P", 12))
+    lbl_health = tk.Label(specific_pokemon_window, text=("Health:", health), font=("Press Start 2P", 12))
     lbl_health.pack()
     lbl_attack = tk.Label(specific_pokemon_window, text=("Attack:", attack), font=("Press Start 2P", 12))
     lbl_attack.pack()
-    lbl_defense = tk.Label(specific_pokemon_window, text=("Defense:", defense ), font=("Press Start 2P", 12))
+    lbl_defense = tk.Label(specific_pokemon_window, text=("Defense:", defense), font=("Press Start 2P", 12))
     lbl_defense.pack()
-    lbl_special_attack = tk.Label(specific_pokemon_window, text=("Sp.Atk", special_attack), font=("Press Start 2P", 12))
+    lbl_special_attack = tk.Label(specific_pokemon_window, text=("Sp.Atk:", special_attack), font=("Press Start 2P", 12))
     lbl_special_attack.pack()
     lbl_special_defense = tk.Label(specific_pokemon_window, text=("Sp.Def:", special_defense), font=("Press Start 2P", 12))
     lbl_special_defense.pack()
     lbl_speed = tk.Label(specific_pokemon_window, text=("Speed:", speed), font=("Press Start 2P", 12))
+    lbl_speed.pack()
+
 
 
 
