@@ -198,6 +198,16 @@ def show_team_sub(character):
         poke4 = 120
         poke5 = 121
         poke6 = 186
+    
+    elif character == "clemont"
+        character_name = "clemont"
+        poke1 = 660
+        poke2 = 650
+        poke3 = 405
+        poke4 = 81
+        poke5 = 82
+        poke6 = 695
+    
     ## new window opens to see team chosen
     show_team_window = tk.Toplevel(window)
     show_team_window.geometry('910x910')
@@ -1017,13 +1027,23 @@ back.place(x= 5, y=5 )
 profile = tk.Button(frm_show_teams_menu, text=('profile'), fg='black',height=6, width=12, command= lambda: [frm_show_teams_menu.pack_forget(), frm_profile_menu.pack() ] )
 profile.place(x=785,y=5)
 #brocks team
+lbl_brock = tk.Label(frm_show_teams_menu, text= "Brock", fg="Black", font=("Press Start 2P", 12))
+lbl_brock.place(x= 135, y=110)
 brock_photo = tk.PhotoImage(file='assets/brock.png')
-btn_brock = tk.Button(frm_show_teams_menu, image=(brock_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("brock")) # 0 is brock
+btn_brock = tk.Button(frm_show_teams_menu, image=(brock_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("brock"))
 btn_brock.place(x= 135, y=135)
 #mistys team
+lbl_misty = tk.Label(frm_show_teams_menu, text= "Misty", fg="Black", font=("Press Start 2P", 12))
+lbl_misty.place(x= 395, y=110)
 misty_photo = tk.PhotoImage(file='assets/misty.png')
-btn_brock = tk.Button(frm_show_teams_menu, image=(misty_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("misty")) # 0 is brock
+btn_brock = tk.Button(frm_show_teams_menu, image=(misty_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("misty"))
 btn_brock.place(x= 395, y=135)
+#clemonts team
+lbl_clemonts = tk.Label(frm_show_teams_menu, text= "Clemonts", fg="Black", font=("Press Start 2P", 12))
+lbl_clemonts.place(x= 655, y=110)
+clemonts_photo = tk.PhotoImage(file='assets/clemonts.png')
+btn_brock = tk.Button(frm_show_teams_menu, image=(clemonts_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("clemonts"))
+btn_brock.place(x= 655, y=135)
 
 
 
