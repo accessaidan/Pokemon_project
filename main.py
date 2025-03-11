@@ -199,7 +199,7 @@ def show_team_sub(character):
         poke5 = 121
         poke6 = 186
     
-    elif character == "clemont"
+    elif character == "clemont":
         character_name = "clemont"
         poke1 = 660
         poke2 = 650
@@ -208,6 +208,16 @@ def show_team_sub(character):
         poke5 = 82
         poke6 = 695
     
+    elif character == "jesse":
+        character_name = "jesse"
+        poke1 = 202
+        poke2 = 336
+        poke3 = 469
+        poke4 = 527
+        poke5 = 711
+        poke6 = 592
+    
+
     ## new window opens to see team chosen
     show_team_window = tk.Toplevel(window)
     show_team_window.geometry('910x910')
@@ -1039,12 +1049,18 @@ misty_photo = tk.PhotoImage(file='assets/misty.png')
 btn_brock = tk.Button(frm_show_teams_menu, image=(misty_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("misty"))
 btn_brock.place(x= 395, y=135)
 #clemonts team
-lbl_clemonts = tk.Label(frm_show_teams_menu, text= "Clemonts", fg="Black", font=("Press Start 2P", 12))
+lbl_clemonts = tk.Label(frm_show_teams_menu, text= "Clemont", fg="Black", font=("Press Start 2P", 12))
 lbl_clemonts.place(x= 655, y=110)
-clemonts_photo = tk.PhotoImage(file='assets/clemonts.png')
+clemonts_photo = tk.PhotoImage(file='assets/clemont.png')
 btn_brock = tk.Button(frm_show_teams_menu, image=(clemonts_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("clemonts"))
 btn_brock.place(x= 655, y=135)
+#jesses team
 
+lbl_jesses = tk.Label(frm_show_teams_menu, text= "Jesse", fg="Black", font=("Press Start 2P", 12))
+lbl_jesses.place(x= 135, y=365)
+jesses_photo = tk.PhotoImage(file='assets/jesse.png')
+btn_brock = tk.Button(frm_show_teams_menu, image=(jesses_photo), fg="black",height=120,width=120, command=lambda: show_team_sub("jesse"))
+btn_brock.place(x= 135, y=390)
 
 
 ##Make a team ##########################################
