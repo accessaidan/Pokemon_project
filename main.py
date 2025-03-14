@@ -4,6 +4,7 @@ import os
 import requests
 from PIL import Image, ImageTk
 import io
+import random
 
 
 global username
@@ -136,6 +137,27 @@ def main_menu_sub():
     frm_login.pack_forget()
     frm_register.pack_forget()
     frm_main_menu.pack()
+
+#change name sub
+def change_name_sub():
+    global username
+    change_name_window = tk.Toplevel(window)
+    change_name_window.title("CHANGE NAME")
+    change_name_window.geometry('250x70')
+    lbl_name_input = tk.Label(change_name_window, text="Enter new name:", foreground='black').pack()
+    txt_new_name = tk.Entry(change_name_window)
+    txt_new_name.pack()
+    btn_change_name = tk.Button(change_name_window, text="CHANGE NAME", foreground='black', command=lambda: change_name_function(txt_new_name, change_name_window))
+    btn_change_name.pack()
+
+# changing name
+def change_name_function(txt_new_name, change_name_window):
+    global username
+    new_name = txt_new_name.get()
+    user_data = pd.read_csv('user_data.csv')
+    user_data.loc[user_data["username"] == username, "username"] = new_name
+    user_data.to_csv('user_data.csv', index=False)
+    change_name_window.destroy()
 
 
 # subroutine for logging out
@@ -283,6 +305,10 @@ def team_builder_sub():
     frm_main_menu.pack_forget()
     frm_make_team.pack()
 
+#random pokemon sub
+def random_pokemon_sub():
+    pokemon_id = random.randint(1,1025)
+    on_poke_click(pokemon_id)
 
 #subroutine to see if inputted pokemon exists 
 def check_pokemon_sub():
@@ -1011,6 +1037,10 @@ frm_profile_menu = tk.Frame(window, width=910, height=910)
 log_out = tk.Button(frm_profile_menu, text = "log out", fg="black",height=6,width=12, command=log_out_sub)
 log_out.place(x= 265, y=265)
 
+# change name button
+
+change_name = tk.Button(frm_profile_menu, text = "Change name", fg="black",height=6,width=12, command=change_name_sub )
+change_name.place(x= 525, y=265)
 
 #see team button
 see_team = tk.Button(frm_profile_menu, text = "View your team", fg="black",height=6,width=12, command=lambda: show_team_sub("user") )
@@ -1018,7 +1048,7 @@ see_team.place(x=395, y= 265)
 
 #delete account button
 delete_account = tk.Button(frm_profile_menu, text = "Delete account", fg="black",height=6,width=12, command= delete_account_sub )
-delete_account.place(x= 525, y=265)
+delete_account.place(x= 785, y=5)
 
 #Back to menu button
 back = tk.Button(frm_profile_menu, text="Back to menu", fg="Black",height=6,width=12,command=lambda: [frm_profile_menu.pack_forget(), frm_main_menu.pack()])
@@ -1073,7 +1103,6 @@ back.place(x= 5, y=5 )
 #profile button
 profile = tk.Button(frm_make_team, text=('profile'), fg='black',height=6, width=12, command= lambda: [frm_make_team.pack_forget(), frm_profile_menu.pack()] )
 profile.place(x=785,y=5)
-
 #what to enter label
 lbl_make_team = tk.Label(frm_make_team, text= 'Enter the desired \n pokemons name or \n pokedex number',foreground='black', height=6, width=18)
 lbl_make_team.place(x= 365, y=275)
@@ -1083,7 +1112,10 @@ txt_make_team.place(x= 365, y=395)
 #submitt pokemon
 btn_submit_pokemon = tk.Button(frm_make_team, text='submit', fg='black', height=5,width=12, command=check_pokemon_sub)
 btn_submit_pokemon.place(x=395, y=525)
+#random pokemon button
 
+btn_random_pokemon = tk.Button(frm_make_team, text='random pokemon', fg='black', height=5,width=12, command=random_pokemon_sub )
+btn_random_pokemon.place(x=395, y=135)
 
 frm_reg_or_log.pack()
 
