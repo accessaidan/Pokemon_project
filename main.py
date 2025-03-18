@@ -1114,7 +1114,7 @@ btn_submit_pokemon = tk.Button(frm_make_team, text='submit', fg='black', height=
 btn_submit_pokemon.place(x=395, y=525)
 #random pokemon button
 
-btn_random_pokemon = tk.Button(frm_make_team, text='random pokemon', fg='black', height=5,width=12, command=random_pokemon_sub )
+btn_random_pokemon = tk.Button(frm_make_team, text='random \n pokemon', fg='black', height=5,width=12, command=random_pokemon_sub )
 btn_random_pokemon.place(x=395, y=135)
 
 frm_reg_or_log.pack()
